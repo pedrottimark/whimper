@@ -40,6 +40,7 @@ describe('TableHead sorting indicator', () => {
       </table>
     </Provider>
   );
+  const trInitial = trShallow($it);
 
   it('is empty by default', () => {
     expect(trShallow($it)).toMatchObject(relevantTestObject(
@@ -134,5 +135,10 @@ describe('TableHead sorting indicator', () => {
         <th><span>{irrelevant}</span><abbr /></th>
       </tr>
     ));
+  });
+
+  it('resets on click non-field heading at left', () => {
+    clickHeading($it, -1);
+    expect(trShallow($it)).toEqual(trInitial);
   });
 });
