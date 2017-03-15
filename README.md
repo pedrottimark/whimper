@@ -93,8 +93,8 @@ Example: **table head** renders button, count, and fields
 
 ![table head has + button in first row; count and fields in second row](images/read-1-example.png)
 
-Baseline: [https://github.com/pedrottimark/whimper/blob/pre-sort/src/components/\_\_test0\_\_/TableHead-R.test.js](https://github.com/pedrottimark/whimper/blob/pre-sort/src/components/__test0__/TableHead-R.test.js)
-Proposed: [https://github.com/pedrottimark/whimper/blob/pre-sort/src/components/\_\_tests\_\_/TableHead-R.test.js](https://github.com/pedrottimark/whimper/blob/pre-sort/src/components/__tests__/TableHead-R.test.js)
+* Baseline: […/pre-sort/src/components/\_\_test0\_\_/TableHead-R.test.js](https://github.com/pedrottimark/whimper/blob/pre-sort/src/components/__test0__/TableHead-R.test.js)
+* Proposed: […/pre-sort/src/components/\_\_tests\_\_/TableHead-R.test.js](https://github.com/pedrottimark/whimper/blob/pre-sort/src/components/__tests__/TableHead-R.test.js)
 
 ```js
 import React from 'react';
@@ -202,8 +202,8 @@ Example: table head renders ascending or descending ** indicator** only in hea
 
 ![second row has down-arrow at the right of the first of three fields](images/read-2-example-descending.png)
 
-Baseline: [https://github.com/pedrottimark/whimper/blob/pre-filter/src/components/\_\_test0\_\_/TableHead-R.test.js](https://github.com/pedrottimark/whimper/blob/pre-filter/src/components/__test0__/TableHead-R.test.js)
-Proposed: [https://github.com/pedrottimark/whimper/blob/pre-filter/src/components/\_\_tests\_\_/TableHead-R.test.js](https://github.com/pedrottimark/whimper/blob/pre-filter/src/components/__tests__/TableHead-R.test.js)
+* Baseline: […/pre-filter/src/components/\_\_test0\_\_/TableHead-R.test.js](https://github.com/pedrottimark/whimper/blob/pre-filter/src/components/__test0__/TableHead-R.test.js)
+* Proposed: […/pre-filter/src/components/\_\_tests\_\_/TableHead-R.test.js](https://github.com/pedrottimark/whimper/blob/pre-filter/src/components/__tests__/TableHead-R.test.js)
 
 ```js
 import React from 'react';
@@ -282,7 +282,7 @@ Example: **click cells** in table head
 
 ![table head has five clickable cells in two rows](images/interact-example.png)
 
-Baseline is same as Proposed: [https://github.com/pedrottimark/whimper/blob/master/src/components/\_\_tests\_\_/TableHead-I.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__tests__/TableHead-I.test.js)
+* Baseline is same as Proposed: […/master/src/components/\_\_tests\_\_/TableHead-I.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__tests__/TableHead-I.test.js)
 
 ```js
 import React from 'react';
@@ -338,8 +338,8 @@ Example: **add row** to table body
 
 ![table body has a new row preceding one existing row](images/create-example-next.png)
 
-Baseline: [https://github.com/pedrottimark/whimper/blob/master/src/components/\_\_test0\_\_/Table-C.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__test0__/Table-C.test.js)
-Proposed: [https://github.com/pedrottimark/whimper/blob/master/src/components/\_\_tests\_\_/Table-C.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__tests__/Table-C.test.js)
+* Baseline: […/master/src/components/\_\_test0\_\_/Table-C.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__test0__/Table-C.test.js)
+* Proposed: […/master/src/components/\_\_tests\_\_/Table-C.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__tests__/Table-C.test.js)
 
 ```js
 import React from 'react';
@@ -397,8 +397,8 @@ Example: **delete row** from table body
 
 ![table body has three rows](images/delete-example-next.png)
 
-Baseline: [https://github.com/pedrottimark/whimper/blob/master/src/components/\_\_test0\_\_/Table-D.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__test0__/Table-D.test.js)
-Proposed: [https://github.com/pedrottimark/whimper/blob/master/src/components/\_\_tests\_\_/Table-D.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__tests__/Table-D.test.js)
+* Baseline: […/master/src/components/\_\_test0\_\_/Table-D.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__test0__/Table-D.test.js)
+* Proposed: […/master/src/components/\_\_tests\_\_/Table-D.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__tests__/Table-D.test.js)
 
 ```js
 // Delete is similar to Create
@@ -435,8 +435,8 @@ Example: **sort rows** by fields
 
 ![table body has four rows sorted ascending by middle field](images/view-example-ascending.png)
 
-Baseline: [https://github.com/pedrottimark/whimper/blob/master/src/components/\_\_test0\_\_/Table-V.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__test0__/Table-V.test.js)
-Proposed: [https://github.com/pedrottimark/whimper/blob/master/src/components/\_\_tests\_\_/Table-V.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__tests__/Table-V.test.js)
+* Baseline: […/master/src/components/\_\_test0\_\_/Table-V.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__test0__/Table-V.test.js)
+* Proposed: […/master/src/components/\_\_tests\_\_/Table-V.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__tests__/Table-V.test.js)
 
 ```js
 // View is similar to Create and Delete
@@ -474,8 +474,8 @@ Example: **input or edit text** in table cell
 
 ![table cell in middle field of third row has tan background color](images/update-example-updating.png)
 
-Baseline: [https://github.com/pedrottimark/whimper/blob/master/src/components/\_\_test0\_\_/Table-U.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__test0__/Table-U.test.js)
-Proposed: [https://github.com/pedrottimark/whimper/blob/master/src/components/\_\_tests\_\_/Table-U.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__tests__/Table-U.test.js)
+* Baseline: […/master/src/components/\_\_test0\_\_/Table-U.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__test0__/Table-U.test.js)
+* Proposed: […/master/src/components/\_\_tests\_\_/Table-U.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__tests__/Table-U.test.js)
 
 ```js
 import React from 'react';
