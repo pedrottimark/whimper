@@ -22,7 +22,7 @@ import {
 } from '../../testing/records-data';
 
 import Table from '../Table';
-const TableRow = () => {}; // mock
+const TableRow = () => {}; // mock, and provide only relevant props
 
 const tbodyShallow = ($it) => mountToShallowObject($it.find('tbody'));
 
