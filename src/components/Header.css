@@ -1,0 +1,20 @@
+#whimper header {
+  display: flex;
+  align-items: baseline;
+  line-height: 4rem;
+  background-color: hsl(210, 100%, 90%); /* light blue */
+}
+
+#whimper header span {
+  font-family: "Apple Color Emoji";
+  font-size: 1.5rem;
+  width: 2rem;
+  text-align: center;
+}
+
+#whimper header h1 {
+  font-size: 2rem;
+  color: hsl(45, 100%, 60%); /* yellow */
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}

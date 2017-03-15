@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableRow renders a record 1`] = `
+<tr>
+  <td
+    onClick={[Function]}
+    title="delete row"
+  >
+    <button>
+      ❌
+    </button>
+  </td>
+  <td
+    data-field-key="when"
+    data-record-id={1}
+  >
+    2017
+  </td>
+  <td
+    data-field-key="what"
+    data-record-id={1}
+  >
+    ECMAScript 2017
+  </td>
+  <td
+    data-field-key="weep"
+    data-record-id={1}
+  >
+    async or swim, not much longer to await
+  </td>
+</tr>
+`;
+
+exports[`TableRow renders a record updating a number field 1`] = `
+<tr>
+  <td
+    onClick={[Function]}
+    title="delete row"
+  >
+    <button>
+      ❌
+    </button>
+  </td>
+  <td
+    data-field-key="when"
+    data-record-id={1}
+  >
+    <div>
+      <span>
+        2017
+      </span>
+      <form
+        onSubmit={[Function]}
+      >
+        <input
+          autoFocus={true}
+          defaultValue={2017}
+          type="number"
+        />
+      </form>
+    </div>
+  </td>
+  <td
+    data-field-key="what"
+    data-record-id={1}
+  >
+    ECMAScript 2017
+  </td>
+  <td
+    data-field-key="weep"
+    data-record-id={1}
+  >
+    async or swim, not much longer to await
+  </td>
+</tr>
+`;
+
+exports[`TableRow renders a record updating a text field 1`] = `
+<tr>
+  <td
+    onClick={[Function]}
+    title="delete row"
+  >
+    <button>
+      ❌
+    </button>
+  </td>
+  <td
+    data-field-key="when"
+    data-record-id={1}
+  >
+    2017
+  </td>
+  <td
+    data-field-key="what"
+    data-record-id={1}
+  >
+    <div>
+      <span>
+        ECMAScript 2017
+      </span>
+      <form
+        onSubmit={[Function]}
+      >
+        <input
+          autoFocus={true}
+          defaultValue="ECMAScript 2017"
+          type="text"
+        />
+      </form>
+    </div>
+  </td>
+  <td
+    data-field-key="weep"
+    data-record-id={1}
+  >
+    async or swim, not much longer to await
+  </td>
+</tr>
+`;

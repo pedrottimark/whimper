@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableHead renders button, count, and fields 1`] = `
+<thead>
+  <tr>
+    <th
+      onClick={[Function]}
+      scope="col"
+      title="add row"
+    >
+      <button>
+        ➕
+      </button>
+    </th>
+    <th
+      colSpan={3}
+      scope="colgroup"
+    >
+      <input
+        onChange={[Function]}
+        placeholder="🔎 filter rows"
+      />
+    </th>
+  </tr>
+  <tr>
+    <th
+      onClick={[Function]}
+      scope="col"
+      title="reset sort order"
+    >
+      7
+    </th>
+    <th
+      onClick={[Function]}
+      scope="col"
+    >
+      <span>
+        when
+      </span>
+      <abbr
+        title=""
+      >
+        
+      </abbr>
+    </th>
+    <th
+      onClick={[Function]}
+      scope="col"
+    >
+      <span>
+        what
+      </span>
+      <abbr
+        title=""
+      >
+        
+      </abbr>
+    </th>
+    <th
+      onClick={[Function]}
+      scope="col"
+    >
+      <span>
+        weep
+      </span>
+      <abbr
+        title=""
+      >
+        
+      </abbr>
+    </th>
+  </tr>
+</thead>
+`;
+
+exports[`TableHead renders button, count, but no fields 1`] = `
+<thead>
+  <tr>
+    <th
+      onClick={[Function]}
+      scope="col"
+      title="add row"
+    >
+      <button>
+        ➕
+      </button>
+    </th>
+  </tr>
+  <tr>
+    <th
+      onClick={[Function]}
+      scope="col"
+      title="reset sort order"
+    >
+      0
+    </th>
+  </tr>
+</thead>
+`;

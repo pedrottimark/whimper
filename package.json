@@ -1,0 +1,25 @@
+{
+  "name": "whimper",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "enzyme": "2.7.1",
+    "enzyme-to-json": "1.5.0",
+    "react-addons-test-utils": "15.4.2",
+    "react-scripts": "0.9.5",
+    "react-test-renderer": "15.4.2"
+  },
+  "dependencies": {
+    "invariant": "2.2.2",
+    "react": "15.4.2",
+    "react-dom": "15.4.2",
+    "react-redux": "5.0.2",
+    "redux": "^3.6.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

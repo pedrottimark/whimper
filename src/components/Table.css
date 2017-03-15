@@ -1,0 +1,113 @@
+#whimper table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+#whimper thead {
+  border-width: 1px;
+  border-bottom-style: solid;
+  border-color: hsl(0, 0%, 60%); /* light gray */
+}
+
+#whimper tr {
+  vertical-align: baseline;
+}
+
+#whimper th {
+  font-weight: normal;
+  text-align: left;
+}
+
+#whimper th,
+#whimper td {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+#whimper th:first-child,
+#whimper td:first-child {
+  padding-left: 0;
+  width: 2rem;
+  padding-right: 0;
+  text-align: center;
+}
+
+#whimper thead tr:nth-child(1) th:first-child,
+#whimper td:first-child {
+  background-color: hsl(210, 100%, 90%); /* light blue */
+}
+
+#whimper thead tr:nth-child(1) th:first-child,
+#whimper thead tr:nth-child(2) th {
+  cursor: default;
+}
+
+#whimper thead tr:nth-child(1) th:first-child:hover,
+#whimper thead tr:nth-child(1) input:focus,
+#whimper thead tr:nth-child(2) th:hover,
+#whimper td:first-child:hover {
+  background-color: hsl(210, 100%, 95%); /* lighter blue */
+}
+
+#whimper thead tr:nth-child(2) th + th span {
+  margin-right: 1.5rem;
+}
+
+#whimper thead tr:nth-child(2) th + th abbr {
+  margin-left: -1rem;
+  text-decoration: none;
+}
+
+#whimper button {
+  width: 100%;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.5rem;
+  height: 1.5rem;
+  opacity: 0.75; /* so symbols do not distract from content */
+  background-color: transparent;
+}
+
+#whimper button:hover {
+  opacity: 1.0;
+}
+
+#whimper thead button {
+  float: left;
+}
+
+#whimper td {
+  position: relative;
+}
+
+#whimper td div form {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+#whimper input {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  height: 1.5rem;
+}
+
+#whimper td input {
+  width: 100%;
+  background-color: hsl(45, 100%, 90%); /* light yellow */
+}
+
+#whimper th input {
+  padding-left: 0.5rem;
+  min-width: 5rem;
+  padding-right: 0.5rem;
+  margin-right: -0.5rem;
+  text-align: right;
+  float: right;
+  background-color: hsl(210, 100%, 90%); /* light blue */
+}
