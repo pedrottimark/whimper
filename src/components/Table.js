@@ -7,7 +7,6 @@ import invariant from 'invariant';
 import {
   createRecord,
   deleteRecord,
-  filterRecords,
   sortRecords,
   updateField,
 } from '../actions';
@@ -22,7 +21,6 @@ import type {
   Records,
   CreateRecord,
   DeleteRecord,
-  FilterRecords,
   SortRecords,
   UpdateField,
   Updating,
@@ -35,7 +33,6 @@ type Props = {|
   view: View,
   createRecord: CreateRecord,
   deleteRecord: DeleteRecord,
-  filterRecords: FilterRecords,
   sortRecords: SortRecords,
   updateField: UpdateField,
 |};
@@ -97,7 +94,7 @@ class Table extends Component {
   }
 
   render() {
-    const {deleteRecord, fields, records, filterRecords, sortRecords, view} = this.props;
+    const {deleteRecord, fields, records, sortRecords, view} = this.props;
     const recordsFilteredSorted = recordsInView(records, fields, view);
     const {updating} = this.state;
     return (
@@ -106,7 +103,6 @@ class Table extends Component {
           addRow={this._addRow}
           count={recordsFilteredSorted.length}
           fields={fields}
-          filterRecords={filterRecords}
           sortRecords={sortRecords}
           view={view}
         />
@@ -138,7 +134,6 @@ const mapStateToProps = ({fields, records, view}: AppState) => ({
 const mapDispatchToProps = {
   createRecord,
   deleteRecord,
-  filterRecords,
   sortRecords,
   updateField,
 };

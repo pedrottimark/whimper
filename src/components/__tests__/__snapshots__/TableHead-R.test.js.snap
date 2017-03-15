@@ -15,12 +15,7 @@ exports[`TableHead renders button, count, and fields 1`] = `
     <th
       colSpan={3}
       scope="colgroup"
-    >
-      <input
-        onChange={[Function]}
-        placeholder="🔎 filter rows"
-      />
-    </th>
+    />
   </tr>
   <tr>
     <th

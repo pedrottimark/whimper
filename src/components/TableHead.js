@@ -5,7 +5,6 @@ import React, {Component} from 'react';
 import type {
   FieldKey,
   Fields,
-  FilterRecords,
   SortRecords,
   SortingCriterion,
   View,
@@ -15,7 +14,6 @@ type Props = {|
   addRow: Function,
   count: number,
   fields: Fields,
-  filterRecords: FilterRecords,
   sortRecords: SortRecords,
   view: View,
 |};
@@ -49,11 +47,6 @@ class TableHead extends Component {
     this.props.addRow();
   }
 
-  _filterRecords = (e: Event) => {
-    const target = ((e.target: any): HTMLInputElement);
-    this.props.filterRecords(target.value);
-  }
-
   _resortRows = () => {
     this.props.sortRecords();
   }
@@ -61,7 +54,6 @@ class TableHead extends Component {
   render() {
     const {count, fields, sortRecords, view} = this.props;
     const addRow = '\u2795'; // HEAVY PLUS SIGN
-    const placeholder = '🔎 filter rows'; // 1F50E RIGHT-POINTING MAGNIFYING GLASS
     const sortingCriterion = view.sorting[0];
     return (
       <thead>
@@ -71,9 +63,7 @@ class TableHead extends Component {
           </th>
           {
             fields.length !== 0 && (
-              <th key="colgroup" scope="colgroup" colSpan={fields.length}>
-                <input placeholder={placeholder} onChange={this._filterRecords} />
-              </th>
+              <th key="colgroup" scope="colgroup" colSpan={fields.length} />
             )
           }
         </tr>

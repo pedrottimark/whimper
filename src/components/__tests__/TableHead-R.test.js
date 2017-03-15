@@ -9,7 +9,6 @@ import {
 } from '../../testing/relevant-test-object';
 
 import {
-  filterRecords,
   sortRecords,
 } from '../../actions';
 import {
@@ -32,7 +31,6 @@ describe('TableHead', () => {
         addRow={addRow}
         count={0}
         fields={fieldsInitial}
-        filterRecords={filterRecords}
         sortRecords={sortRecords}
         view={viewInitial}
       />
@@ -45,7 +43,6 @@ describe('TableHead', () => {
         addRow={addRow}
         count={7}
         fields={fields}
-        filterRecords={filterRecords}
         sortRecords={sortRecords}
         view={viewInitial}
       />
@@ -58,7 +55,6 @@ describe('TableHead', () => {
         addRow={addRow}
         count={7}
         fields={fields}
-        filterRecords={filterRecords}
         sortRecords={sortRecords}
         view={Object.assign({}, viewInitial, {
           sorting: [
@@ -94,7 +90,6 @@ describe('TableHead', () => {
         addRow={addRow}
         count={7}
         fields={fields}
-        filterRecords={filterRecords}
         sortRecords={sortRecords}
         view={Object.assign({}, viewInitial, {
           sorting: [
