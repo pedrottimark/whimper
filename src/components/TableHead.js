@@ -87,7 +87,7 @@ class TableHead extends Component {
                   <span>{label}</span>
                   <abbr title={title}>{text}</abbr>
                 </th>
-              )
+              );
             })
           }
         </tr>

@@ -22,6 +22,7 @@ describe('view reducer sorting', () => {
       },
     ]);
   });
+
   it('is ascending for second criterion', () => {
     store.dispatch(sortRecords(whenKey));
     expect(store.getState().sorting).toEqual([
