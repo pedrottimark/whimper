@@ -15,7 +15,6 @@ describe('TableHead', () => {
         addRow={addRow}
         count={7}
         fields={fields}
-        filterRecords={() => {}}
         sortRecords={sortRecords}
         view={viewInitial}
       />
