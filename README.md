@@ -190,11 +190,11 @@ Proposed to import from `react-test-renderer`
   * `children` is slightly normalized to be **compatible** with the preceding functions
 
 | How do you get the relevant JSX? | When |
-|----------------------------------|-----:|
+|:---------------------------------|-----:|
 | Type it, based on render method. | TDD or non-TDD |
 | Copy from existing Read snapshot, and delete whatever is irrelevant. | TDD or non-TDD |
 | Copy from temporary snapshot… | non-TDD |
-| Maybe someday, paste by editor integration… | non-TDD |
+| *Maybe someday*, paste by editor integration… | non-TDD |
 
 ### Read or render, part 2
 
