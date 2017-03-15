@@ -32,7 +32,6 @@ export type View = {|
 export type AppState = {|
   fields: Fields,
   records: Records,
-  view: View,
 |};
 
 export type Updating = {

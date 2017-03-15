@@ -5,14 +5,10 @@ import {
   fieldsInitial,
   fieldsReceived as fields,
 } from '../../reducers/fields';
-import {viewInitial} from '../../reducers/view';
 
 const textAt = ($it, i) => $it.find('tr').at(1).find('th').at(1 + i).text();
 
-import TableHead, {
-  ascending,
-  descending,
-} from '../TableHead';
+import TableHead from '../TableHead';
 
 describe('TableHead', () => {
   it('renders button, count, but no fields', () => {
@@ -21,8 +17,6 @@ describe('TableHead', () => {
         addRow={() => {}}
         count={0}
         fields={fieldsInitial}
-        sortRecords={() => {}}
-        view={viewInitial}
       />
     );
     expect($it.find('button').length).toBe(1); // add row
@@ -35,8 +29,6 @@ describe('TableHead', () => {
         addRow={() => {}}
         count={4}
         fields={fields}
-        sortRecords={() => {}}
-        view={viewInitial}
       />
     );
     expect($it.find('button').length).toBe(1); // add row
@@ -45,56 +37,5 @@ describe('TableHead', () => {
     expect(textAt($it, 0)).toBe(fields[0].label);
     expect(textAt($it, 1)).toBe(fields[1].label);
     expect(textAt($it, 2)).toBe(fields[2].label);
-  });
-
-  it('renders ascending indicator in `what` heading', () => {
-    const $it = shallow(
-      <TableHead
-        addRow={() => {}}
-        count={3}
-        fields={fields}
-        sortRecords={() => {}}
-        view={Object.assign({}, viewInitial, {
-          sorting: [
-            {
-              fieldKey: 'what',
-              descending: false,
-            },
-          ]
-        })}
-      />
-    );
-    const $abbr = $it.find('tr').at(1).find('abbr').at(1);
-    expect($abbr.prop('title')).toBe('ascending');
-    expect($abbr.text()).toBe(ascending);
-    // and so on for headings where indicator is not expected
-  });
-
-  it('renders descending indicator in `when` heading', () => {
-    const $it = shallow(
-      <TableHead
-        addRow={() => {}}
-        count={3}
-        fields={fields}
-        sortRecords={() => {}}
-        view={Object.assign({}, viewInitial, {
-          sorting: [
-            {
-              fieldKey: 'when',
-              descending: true,
-            },
-            {
-              fieldKey: 'what',
-              descending: false,
-            },
-          ]
-        })}
-      />
-    );
-
-    const $abbr = $it.find('tr').at(1).find('abbr').at(0);
-    expect($abbr.prop('title')).toBe('descending');
-    expect($abbr.text()).toBe(descending);
-    // and so on for headings where indicator is not expected
   });
 });

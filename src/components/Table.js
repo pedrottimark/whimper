@@ -7,14 +7,11 @@ import invariant from 'invariant';
 import {
   createRecord,
   deleteRecord,
-  filterRecords,
-  sortRecords,
   updateField,
 } from '../actions';
 
 import {fieldValue} from '../reducers/fields';
 import {recordDefault} from '../reducers/records';
-import {recordsInView} from '../reducers/view';
 
 import type {
   AppState,
@@ -22,21 +19,15 @@ import type {
   Records,
   CreateRecord,
   DeleteRecord,
-  FilterRecords,
-  SortRecords,
   UpdateField,
   Updating,
-  View,
 } from '../types';
 
 type Props = {|
   fields: Fields,
   records: Records,
-  view: View,
   createRecord: CreateRecord,
   deleteRecord: DeleteRecord,
-  filterRecords: FilterRecords,
-  sortRecords: SortRecords,
   updateField: UpdateField,
 |};
 
@@ -97,22 +88,18 @@ class Table extends Component {
   }
 
   render() {
-    const {deleteRecord, fields, records, filterRecords, sortRecords, view} = this.props;
-    const recordsFilteredSorted = recordsInView(records, fields, view);
+    const {deleteRecord, fields, records} = this.props;
     const {updating} = this.state;
     return (
       <table>
         <TableHead
           addRow={this._addRow}
-          count={recordsFilteredSorted.length}
+          count={records.length}
           fields={fields}
-          filterRecords={filterRecords}
-          sortRecords={sortRecords}
-          view={view}
         />
         <tbody onDoubleClick={this._updating}>
           {
-            recordsFilteredSorted.map(record => (
+            records.map(record => (
               <TableRow
                 key={record.id}
                 deleteRecord={deleteRecord}
@@ -129,17 +116,14 @@ class Table extends Component {
 }
 
 // A container component subscribes to relevant parts of state in the Redux store.
-const mapStateToProps = ({fields, records, view}: AppState) => ({
+const mapStateToProps = ({fields, records}: AppState) => ({
   fields,
   records,
-  view,
 });
 
 const mapDispatchToProps = {
   createRecord,
   deleteRecord,
-  filterRecords,
-  sortRecords,
   updateField,
 };
 
