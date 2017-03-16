@@ -518,3 +518,7 @@ describe('Table', () => {
 
 * Baseline: add as many abstract assertions as you can?
 * Proposed: **delete** as many **irrelevant** details as you can!
+
+> Dmitrii Abramov: testing pyramid in 2016
+
+[https://twitter.com/abramov_dmitrii/status/805913874704674816](https://twitter.com/abramov_dmitrii/status/805913874704674816)
