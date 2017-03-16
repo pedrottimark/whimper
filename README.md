@@ -142,8 +142,8 @@ git checkout master
 
 * Too **easy** to write a test, which you do once.
 * Too **hard** to understand if it fails, unhappily ever after.
-   Which changes are correct or incorrect?
-  Overlook a change that should be, but isn’t?
+   * Which changes are correct or incorrect?
+  * Overlook a change that should be, but isn’t?
 
 > Adrien Antoine: The danger of #Jest snapshot testing is **overusing** it, there would be **so much diff** for each code change that you wouldn’t see the actual bug
 
