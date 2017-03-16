@@ -6,21 +6,15 @@ The **whimper** app is a parody of Twitter that I adapted from Whinepad in *Reac
 
 ## Let’s start with  the ~~bug~~ big picture
 
-> The main reason to write tests is to ensure  that your app works the way it should.
-> Test the **high-value** features.
-> You click an “Add to Cart” button.  The app had better add that item to the cart.
+> Dave Ceddia: The main reason to write tests is to ensure  that your app works the way it should. Test the **high-value** features. You click an “Add to Cart” button.  The app had better add that item to the cart.
 
 [https://daveceddia.com/what-to-test-in-react-app/](https://daveceddia.com/what-to-test-in-react-app/)
 
-> When you test React components:
-> Given properties and state, what **structure**?
-> Behavior or **interaction**: is there a possibility  to transition from state A to state B?
+> Marcin Grzywaczewski: When you test React components: Given properties and state, what **structure**? Behavior or **interaction**: is there a possibility  to transition from state A to state B?
 
-[reactkungfu.com/2015/07/approaches-to-testing-react-components-an-overview/](reactkungfu.com/2015/07/approaches-to-testing-react-components-an-overview/)
+[http://reactkungfu.com/2015/07/approaches-to-testing-react-components-an-overview/](http://reactkungfu.com/2015/07/approaches-to-testing-react-components-an-overview/)
 
-> Writing tests defines your component’s **contract**.
-> From an outsider’s perspective,  is this detail important?
-> Don’t duplicate the application code.
+> Stephen Scott: Writing tests defines your component’s **contract**. From an outsider’s perspective,  is this detail important? Don’t duplicate the application code.
 
 [https://medium.com/@suchipi/the-right-way-to-test-react-components-548a4736ab22](https://medium.com/@suchipi/the-right-way-to-test-react-components-548a4736ab22)
 
@@ -131,6 +125,7 @@ git checkout diff-sort
 
 npm test -- TableHead-R
 u
+q
 
 git checkout -- src/components/__tests__/__snapshots__/TableHead-R.test.js.snap
 git checkout master
@@ -150,17 +145,13 @@ git checkout master
    Which changes are correct or incorrect?
   Overlook a change that should be, but isn’t?
 
-> The danger of #Jest snapshot testing is **overusing** it,
-> there would be **so much diff** for each code change that you wouldn’t see the actual bug
-> —Adrien Antoine
-> I totally agree. We will need to evolve **patterns** over time and figure out the best **balance**.
-> —Christoph Pojer
+> Adrien Antoine: The danger of #Jest snapshot testing is **overusing** it, there would be **so much diff** for each code change that you wouldn’t see the actual bug
+
+> Christoph Pojer: I totally agree. We will need to evolve **patterns** over time and figure out the best **balance**.
 
 [https://twitter.com/cpojer/status/774427994077048832](https://twitter.com/cpojer/status/774427994077048832)
 
-> A snapshot test does not tell you your code **broke**, only that it **changed**.
-> It is easier to explain exactly which pieces you care about with the imperative approach,
-> but I would love to see  **tooling** change that opinion.
+> Stephen Scott: A snapshot test does not tell you your code **broke**, only that it **changed**. It is easier to explain exactly which pieces you care about with the imperative approach, but I would love to see  **tooling** change that opinion.
 
 [https://medium.com/@suchipi/thanks-for-your-response-e8e9217db08f](https://medium.com/@suchipi/thanks-for-your-response-e8e9217db08f)
 
@@ -191,10 +182,10 @@ Proposed to import from `react-test-renderer`
 
 | How do you get the relevant JSX? | When |
 |:---------------------------------|-----:|
-| Type it, based on render method. | TDD or non-TDD |
-| Copy from existing Read snapshot, and delete whatever is irrelevant. | TDD or non-TDD |
-| Copy from temporary snapshot… | non-TDD |
-| *Maybe someday*, paste by editor integration… | non-TDD |
+| Type it, based on render method | TDD or non-TDD |
+| Copy from existing Read snapshot, and delete whatever is irrelevant | TDD or non-TDD |
+| Copy from temporary snapshot, and delete whatever is irrelevant | non-TDD |
+| *Maybe someday*, paste by editor integration, and delete… | non-TDD |
 
 ### Read or render, part 2
 
@@ -259,14 +250,15 @@ To type a substring, add `input` element at right of first `tr`.
 
 ![first row has input at right to type filter substring](images/read-3-example-filter.png)
 
-* Because one proposed snapshot fails,  you must **decide** to update it.
 * Because the baseline assertion passes,  you must **remember** to update it.
+* Because one proposed snapshot fails,  you must **decide** to update it.
 
 ```sh
 git checkout diff-filter
 
 npm test -- TableHead-R
 u
+q
 
 git checkout -- src/components/__tests__/__snapshots__/TableHead-R.test.js.snap
 git checkout master
@@ -274,7 +266,10 @@ git checkout master
 
 ### Interact
 
-If you don’t have time to write tests for the rest of the patterns, or if components render simple views of data, then you might just test rendering and that  interface **events** cause correct **actions**.
+If components render simple views of data, or if you don’t have time to apply other patterns, you might test only:
+
+* rendering
+* interaction, that  interface **events** cause correct **actions**
 
 `jest.fn()` returns a mock function,  also known as a spy, to assert behavior of calling code,  not just output.
 
@@ -518,10 +513,7 @@ describe('Table', () => {
 
 ## Conclusion
 
-> It seems that perfection is attained
-  not when there is nothing more to add,
-  but when there is nothing more to **remove**.
-	—Antoine de Saint Exupéry
+> Antoine de Saint Exupéry: It seems that perfection is attained not when there is nothing more to add, but when there is nothing more to **remove**.
 
 * Baseline: add as many abstract assertions as you can?
 * Proposed: **delete** as many **irrelevant** details as you can!
