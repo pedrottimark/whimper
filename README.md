@@ -271,7 +271,7 @@ If components render simple views of data, or if you don’t have time to apply 
 * rendering
 * interaction, that  interface **events** cause correct **actions**
 
-`jest.fn()` returns a mock function,  also known as a spy, to assert behavior of calling code,  not just output.
+`jest.fn()` returns a mock function,  also known as a spy, to assert **behavior** of calling code,  not just output.
 
 Example: **click cells** in table head
 
