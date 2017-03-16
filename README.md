@@ -6,21 +6,15 @@ The **whimper** app is a parody of Twitter that I adapted from Whinepad in *Reac
 
 ## Let’s start with  the ~~bug~~ big picture
 
-> The main reason to write tests is to ensure  that your app works the way it should.
-> Test the **high-value** features.
-> You click an “Add to Cart” button.  The app had better add that item to the cart.
+> Dave Ceddia: The main reason to write tests is to ensure  that your app works the way it should. Test the **high-value** features. You click an “Add to Cart” button.  The app had better add that item to the cart.
 
 [https://daveceddia.com/what-to-test-in-react-app/](https://daveceddia.com/what-to-test-in-react-app/)
 
-> When you test React components:
-> Given properties and state, what **structure**?
-> Behavior or **interaction**: is there a possibility  to transition from state A to state B?
+> Marcin Grzywaczewski: When you test React components: Given properties and state, what **structure**? Behavior or **interaction**: is there a possibility  to transition from state A to state B?
 
-[reactkungfu.com/2015/07/approaches-to-testing-react-components-an-overview/](reactkungfu.com/2015/07/approaches-to-testing-react-components-an-overview/)
+[http://reactkungfu.com/2015/07/approaches-to-testing-react-components-an-overview/](http://reactkungfu.com/2015/07/approaches-to-testing-react-components-an-overview/)
 
-> Writing tests defines your component’s **contract**.
-> From an outsider’s perspective,  is this detail important?
-> Don’t duplicate the application code.
+> Stephen Scott: Writing tests defines your component’s **contract**. From an outsider’s perspective,  is this detail important? Don’t duplicate the application code.
 
 [https://medium.com/@suchipi/the-right-way-to-test-react-components-548a4736ab22](https://medium.com/@suchipi/the-right-way-to-test-react-components-548a4736ab22)
 
@@ -93,8 +87,8 @@ Example: **table head** renders button, count, and fields
 
 ![table head has + button in first row; count and fields in second row](images/read-1-example.png)
 
-Baseline: [https://github.com/pedrottimark/whimper/blob/pre-sort/src/components/\_\_test0\_\_/TableHead-R.test.js](https://github.com/pedrottimark/whimper/blob/pre-sort/src/components/__test0__/TableHead-R.test.js)
-Proposed: [https://github.com/pedrottimark/whimper/blob/pre-sort/src/components/\_\_tests\_\_/TableHead-R.test.js](https://github.com/pedrottimark/whimper/blob/pre-sort/src/components/__tests__/TableHead-R.test.js)
+* Baseline: […/pre-sort/src/components/\_\_test0\_\_/TableHead-R.test.js](https://github.com/pedrottimark/whimper/blob/pre-sort/src/components/__test0__/TableHead-R.test.js)
+* Proposed: […/pre-sort/src/components/\_\_tests\_\_/TableHead-R.test.js](https://github.com/pedrottimark/whimper/blob/pre-sort/src/components/__tests__/TableHead-R.test.js)
 
 ```js
 import React from 'react';
@@ -131,6 +125,7 @@ git checkout diff-sort
 
 npm test -- TableHead-R
 u
+q
 
 git checkout -- src/components/__tests__/__snapshots__/TableHead-R.test.js.snap
 git checkout master
@@ -150,17 +145,13 @@ git checkout master
    Which changes are correct or incorrect?
   Overlook a change that should be, but isn’t?
 
-> The danger of #Jest snapshot testing is **overusing** it,
-> there would be **so much diff** for each code change that you wouldn’t see the actual bug
-> —Adrien Antoine
-> I totally agree. We will need to evolve **patterns** over time and figure out the best **balance**.
-> —Christoph Pojer
+> Adrien Antoine: The danger of #Jest snapshot testing is **overusing** it, there would be **so much diff** for each code change that you wouldn’t see the actual bug
+
+> Christoph Pojer: I totally agree. We will need to evolve **patterns** over time and figure out the best **balance**.
 
 [https://twitter.com/cpojer/status/774427994077048832](https://twitter.com/cpojer/status/774427994077048832)
 
-> A snapshot test does not tell you your code **broke**, only that it **changed**.
-> It is easier to explain exactly which pieces you care about with the imperative approach,
-> but I would love to see  **tooling** change that opinion.
+> Stephen Scott: A snapshot test does not tell you your code **broke**, only that it **changed**. It is easier to explain exactly which pieces you care about with the imperative approach, but I would love to see  **tooling** change that opinion.
 
 [https://medium.com/@suchipi/thanks-for-your-response-e8e9217db08f](https://medium.com/@suchipi/thanks-for-your-response-e8e9217db08f)
 
@@ -190,11 +181,11 @@ Proposed to import from `react-test-renderer`
   * `children` is slightly normalized to be **compatible** with the preceding functions
 
 | How do you get the relevant JSX? | When |
-|----------------------------------|-----:|
-| Type it, based on render method. | TDD or non-TDD |
-| Copy from existing Read snapshot, and delete whatever is irrelevant. | TDD or non-TDD |
-| Copy from temporary snapshot… | non-TDD |
-| Maybe someday, paste by editor integration… | non-TDD |
+|:---------------------------------|-----:|
+| Type it, based on render method | TDD or non-TDD |
+| Copy from existing Read snapshot, and delete whatever is irrelevant | TDD or non-TDD |
+| Copy from temporary snapshot, and delete whatever is irrelevant | non-TDD |
+| *Maybe someday*, paste by editor integration, and delete… | non-TDD |
 
 ### Read or render, part 2
 
@@ -202,8 +193,8 @@ Example: table head renders ascending or descending ** indicator** only in hea
 
 ![second row has down-arrow at the right of the first of three fields](images/read-2-example-descending.png)
 
-Baseline: [https://github.com/pedrottimark/whimper/blob/pre-filter/src/components/\_\_test0\_\_/TableHead-R.test.js](https://github.com/pedrottimark/whimper/blob/pre-filter/src/components/__test0__/TableHead-R.test.js)
-Proposed: [https://github.com/pedrottimark/whimper/blob/pre-filter/src/components/\_\_tests\_\_/TableHead-R.test.js](https://github.com/pedrottimark/whimper/blob/pre-filter/src/components/__tests__/TableHead-R.test.js)
+* Baseline: […/pre-filter/src/components/\_\_test0\_\_/TableHead-R.test.js](https://github.com/pedrottimark/whimper/blob/pre-filter/src/components/__test0__/TableHead-R.test.js)
+* Proposed: […/pre-filter/src/components/\_\_tests\_\_/TableHead-R.test.js](https://github.com/pedrottimark/whimper/blob/pre-filter/src/components/__tests__/TableHead-R.test.js)
 
 ```js
 import React from 'react';
@@ -259,14 +250,15 @@ To type a substring, add `input` element at right of first `tr`.
 
 ![first row has input at right to type filter substring](images/read-3-example-filter.png)
 
-* Because one proposed snapshot fails,  you must **decide** to update it.
 * Because the baseline assertion passes,  you must **remember** to update it.
+* Because one proposed snapshot fails,  you must **decide** to update it.
 
 ```sh
 git checkout diff-filter
 
 npm test -- TableHead-R
 u
+q
 
 git checkout -- src/components/__tests__/__snapshots__/TableHead-R.test.js.snap
 git checkout master
@@ -274,7 +266,10 @@ git checkout master
 
 ### Interact
 
-If you don’t have time to write tests for the rest of the patterns, or if components render simple views of data, then you might just test rendering and that  interface **events** cause correct **actions**.
+If components render simple views of data, or if you don’t have time to apply other patterns, you might test only:
+
+* rendering
+* interaction, that  interface **events** cause correct **actions**
 
 `jest.fn()` returns a mock function,  also known as a spy, to assert behavior of calling code,  not just output.
 
@@ -282,7 +277,7 @@ Example: **click cells** in table head
 
 ![table head has five clickable cells in two rows](images/interact-example.png)
 
-Baseline is same as Proposed: [https://github.com/pedrottimark/whimper/blob/master/src/components/\_\_tests\_\_/TableHead-I.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__tests__/TableHead-I.test.js)
+* Baseline is same as Proposed: […/master/src/components/\_\_tests\_\_/TableHead-I.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__tests__/TableHead-I.test.js)
 
 ```js
 import React from 'react';
@@ -338,8 +333,8 @@ Example: **add row** to table body
 
 ![table body has a new row preceding one existing row](images/create-example-next.png)
 
-Baseline: [https://github.com/pedrottimark/whimper/blob/master/src/components/\_\_test0\_\_/Table-C.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__test0__/Table-C.test.js)
-Proposed: [https://github.com/pedrottimark/whimper/blob/master/src/components/\_\_tests\_\_/Table-C.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__tests__/Table-C.test.js)
+* Baseline: […/master/src/components/\_\_test0\_\_/Table-C.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__test0__/Table-C.test.js)
+* Proposed: […/master/src/components/\_\_tests\_\_/Table-C.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__tests__/Table-C.test.js)
 
 ```js
 import React from 'react';
@@ -397,8 +392,8 @@ Example: **delete row** from table body
 
 ![table body has three rows](images/delete-example-next.png)
 
-Baseline: [https://github.com/pedrottimark/whimper/blob/master/src/components/\_\_test0\_\_/Table-D.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__test0__/Table-D.test.js)
-Proposed: [https://github.com/pedrottimark/whimper/blob/master/src/components/\_\_tests\_\_/Table-D.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__tests__/Table-D.test.js)
+* Baseline: […/master/src/components/\_\_test0\_\_/Table-D.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__test0__/Table-D.test.js)
+* Proposed: […/master/src/components/\_\_tests\_\_/Table-D.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__tests__/Table-D.test.js)
 
 ```js
 // Delete is similar to Create
@@ -435,8 +430,8 @@ Example: **sort rows** by fields
 
 ![table body has four rows sorted ascending by middle field](images/view-example-ascending.png)
 
-Baseline: [https://github.com/pedrottimark/whimper/blob/master/src/components/\_\_test0\_\_/Table-V.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__test0__/Table-V.test.js)
-Proposed: [https://github.com/pedrottimark/whimper/blob/master/src/components/\_\_tests\_\_/Table-V.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__tests__/Table-V.test.js)
+* Baseline: […/master/src/components/\_\_test0\_\_/Table-V.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__test0__/Table-V.test.js)
+* Proposed: […/master/src/components/\_\_tests\_\_/Table-V.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__tests__/Table-V.test.js)
 
 ```js
 // View is similar to Create and Delete
@@ -474,8 +469,8 @@ Example: **input or edit text** in table cell
 
 ![table cell in middle field of third row has tan background color](images/update-example-updating.png)
 
-Baseline: [https://github.com/pedrottimark/whimper/blob/master/src/components/\_\_test0\_\_/Table-U.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__test0__/Table-U.test.js)
-Proposed: [https://github.com/pedrottimark/whimper/blob/master/src/components/\_\_tests\_\_/Table-U.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__tests__/Table-U.test.js)
+* Baseline: […/master/src/components/\_\_test0\_\_/Table-U.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__test0__/Table-U.test.js)
+* Proposed: […/master/src/components/\_\_tests\_\_/Table-U.test.js](https://github.com/pedrottimark/whimper/blob/master/src/components/__tests__/Table-U.test.js)
 
 ```js
 import React from 'react';
@@ -518,10 +513,7 @@ describe('Table', () => {
 
 ## Conclusion
 
-> It seems that perfection is attained
-  not when there is nothing more to add,
-  but when there is nothing more to **remove**.
-	—Antoine de Saint Exupéry
+> Antoine de Saint Exupéry: It seems that perfection is attained not when there is nothing more to add, but when there is nothing more to **remove**.
 
 * Baseline: add as many abstract assertions as you can?
 * Proposed: **delete** as many **irrelevant** details as you can!
