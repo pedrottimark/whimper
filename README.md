@@ -514,11 +514,17 @@ describe('Table', () => {
 
 ## Conclusion
 
-> Antoine de Saint Exupéry: It seems that perfection is attained not when there is nothing more to add, but when there is nothing more to **remove**.
-
 * Baseline: add as many abstract assertions as you can?
 * Proposed: **delete** as many **irrelevant** details as you can!
 
-> Dmitrii Abramov: testing pyramid in 2016
+> It seems that perfection is attained not when there is nothing more to add, but when there is nothing more to **remove**.
+
+— Antoine de Saint Exupéry
+
+>  detect and fix any problem…at the lowest-value stage possible…at the unit test of the pieces…rather than in the course of the test of the final product itself
+
+— Andrew S. Grove in *High Output Management*
+
+> testing pyramid in 2016
 
 [https://twitter.com/abramov_dmitrii/status/805913874704674816](https://twitter.com/abramov_dmitrii/status/805913874704674816)
