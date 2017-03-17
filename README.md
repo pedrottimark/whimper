@@ -34,14 +34,14 @@ The **whimper** app is a parody of Twitter that I adapted from Whinepad in *Reac
   Sometimes we eject this project from `create-react-app` and upgrade Jest to use a critical new feature.
   When `react-scripts` catches up with Jest, we [recreate an unejected config](speakerdeck.com/pedrottimark/ uneject-and-recreate-reactjs-charlotte).
 
-### Other devDependencies
+### Only a few other devDependencies
 
 * react-addons-test-utils is peer dependency for enzyme
-* **enzyme** returns a wrapper, as in jQuery
-  * **shallow** renders component one level deep, to test it independent of how children are implemented
-  * **mount** renders component to full depth in simulated DOM
-* **enzyme-to-json** converts enzyme wrapper to test object compatible with `toMatchSnapshot` assertion
-* **react-test-renderer** renders component as test object compatible with `toMatchSnapshot` assertion
+* [enzyme](http://airbnb.io/enzyme/) returns a wrapper, as in jQuery
+  * [shallow](http://airbnb.io/enzyme/docs/api/shallow.html) renders component one level deep, to test it independent of how children are implemented
+  * [mount](http://airbnb.io/enzyme/docs/api/mount.html) renders component to full depth in simulated DOM
+* [enzyme-to-json](https://github.com/adriantoine/enzyme-to-json) converts enzyme wrapper to test object compatible with `toMatchSnapshot` assertion
+* react-test-renderer renders component as test object compatible with `toMatchSnapshot` assertion
 
 ## Let’s move to  a smaller picture
 
