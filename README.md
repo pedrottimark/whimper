@@ -228,11 +228,11 @@ describe('TableHead', () => {
         </th>
         <th>
           <span>{irrelevant}</span>
-          <abbr title=""></abbr>
+          <abbr title="">{''}</abbr>
         </th>
         <th>
           <span>{irrelevant}</span>
-          <abbr title=""></abbr>
+          <abbr title="">{''}</abbr>
         </th>
       </tr>
     ));

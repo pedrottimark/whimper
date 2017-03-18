@@ -2,12 +2,10 @@ import renderer from 'react-test-renderer';
 
 const toEnumerableElement = (element) => Object.assign({}, element, {
   $$typeof: element.$$typeof,
-  children: element.children === null || (element.children.length === 1 && element.children[0] === '')
-    ? null
-    : element.children.map((child) => typeof child === 'string' || typeof child === 'number'
-        ? child
-        : toEnumerableElement(child)
-      ),
+  children: element.children && element.children.map((child) => typeof child === 'string' || typeof child === 'number'
+    ? child
+    : toEnumerableElement(child)
+  ),
 });
 
 const toEnumerableObject = (object) => object && toEnumerableElement(object);
@@ -45,12 +43,11 @@ function childRelevant(child, array) {
   if (Array.isArray(child)) {
     return childrenRelevant(child, array);
   }
-  if (child !== '') {  // for compatibility with mountToJson
-    array.push(child && child.$$typeof === reactSymbol
-      ? relevantTestObject(child) // recurse for object
-      : child // non-element node
-    );
-  }
+
+  array.push(child && child.$$typeof === reactSymbol
+    ? relevantTestObject(child) // recurse for object
+    : child // non-element node
+  );
   return array;
 }
 
