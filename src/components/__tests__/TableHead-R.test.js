@@ -5,7 +5,6 @@ import renderer from 'react-test-renderer';
 import {
   irrelevant,
   relevantTestObject,
-  renderAsTestObject,
 } from '../../testing/relevant-test-object';
 
 import {
@@ -53,7 +52,7 @@ describe('TableHead', () => {
   });
 
   it('renders ascending indicator in `what` heading', () => {
-    expect(renderAsTestObject(
+    expect(renderer.create(
       <TableHead
         addRow={addRow}
         count={7}
@@ -69,7 +68,7 @@ describe('TableHead', () => {
           ]
         })}
       />
-    ).children[1]).toMatchObject(relevantTestObject(
+    ).toJSON().children[1]).toMatchObject(relevantTestObject(
       <tr>
         <th>{irrelevant}</th>
         <th>
@@ -89,7 +88,7 @@ describe('TableHead', () => {
   });
 
   it('renders descending indicator in `when` heading', () => {
-    expect(renderAsTestObject(
+    expect(renderer.create(
       <TableHead
         addRow={addRow}
         count={7}
@@ -109,7 +108,7 @@ describe('TableHead', () => {
           ]
         })}
       />
-    ).children[1]).toMatchObject(relevantTestObject(
+    ).toJSON().children[1]).toMatchObject(relevantTestObject(
       <tr>
         <th>{irrelevant}</th>
         <th>
