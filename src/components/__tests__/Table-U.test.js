@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {mount} from 'enzyme';
-import {mountToDeepObject} from '../../testing/enzyme-to-json';
+import {mountToDeepJson} from '../../testing/enzyme-to-json';
 import {relevantTestObject} from '../../testing/react-test-renderer';
 import invariant from 'invariant';
 
@@ -48,7 +48,7 @@ describe('Table', () => {
     $td.simulate('doubleClick');
 
     const numberInitial = records[rowIndex][fields[fieldIndex].key];
-    expect(mountToDeepObject($td)).toMatchObject(relevantTestObject(
+    expect(mountToDeepJson($td)).toMatchObject(relevantTestObject(
       <td>
         <div>
           <span>{numberInitial}</span>
@@ -69,7 +69,7 @@ describe('Table', () => {
     input.value = numberUpdated.toString();
 
     $td.find('form').simulate('submit');
-    expect(mountToDeepObject($td)).toMatchObject(relevantTestObject(
+    expect(mountToDeepJson($td)).toMatchObject(relevantTestObject(
       <td>{numberUpdated}</td>
     ));
   });
@@ -100,7 +100,7 @@ describe('Table', () => {
     $td.simulate('doubleClick');
 
     const textInitial = records[rowIndex][fields[fieldIndex].key];
-    expect(mountToDeepObject($td)).toMatchObject(relevantTestObject(
+    expect(mountToDeepJson($td)).toMatchObject(relevantTestObject(
       <td>
         <div>
           <span>{textInitial}</span>
@@ -119,7 +119,7 @@ describe('Table', () => {
     input.value = textUpdated;
 
     $td.find('form').simulate('submit');
-    expect(mountToDeepObject($td)).toMatchObject(relevantTestObject(
+    expect(mountToDeepJson($td)).toMatchObject(relevantTestObject(
       <td>{textUpdated}</td>
     ));
   });
@@ -144,11 +144,11 @@ describe('Table', () => {
         fieldKey: td.getAttribute('data-field-key'),
       };
     }
-    const prev = mountToDeepObject($td);
+    const prev = mountToDeepJson($td);
     $td.simulate('doubleClick');
 
     $td.find('input').simulate('doubleClick');
-    const next = mountToDeepObject($td);
+    const next = mountToDeepJson($td);
     expect(next).toEqual(prev);
   });
 });

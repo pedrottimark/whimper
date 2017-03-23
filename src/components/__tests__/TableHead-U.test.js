@@ -3,7 +3,7 @@ import {createStore} from 'redux';
 import {connect, Provider} from 'react-redux';
 
 import {mount} from 'enzyme';
-import {mountToShallowObject} from '../../testing/enzyme-to-json';
+import {mountToShallowJson} from '../../testing/enzyme-to-json';
 import {irrelevant, relevantTestObject} from '../../testing/react-test-renderer';
 
 import {fieldsReceived as fields} from '../../reducers/fields';
@@ -19,7 +19,7 @@ describe('TableHead sorting indicator', () => {
   const clickHeading = ($it, i) => {
     $it.find('tr').at(1).find('th').at(1 + i).simulate('click');
   }
-  const trShallow = ($it) => mountToShallowObject($it.find('tr').at(1));
+  const trShallow = ($it) => mountToShallowJson($it.find('tr').at(1));
 
   const Connected = connect(
     state => ({
