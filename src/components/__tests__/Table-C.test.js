@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {mount} from 'enzyme';
-import {mountToShallowObject} from '../../testing/enzyme-to-json';
+import {mountToShallowJson} from '../../testing/enzyme-to-json';
 import {relevantTestObject} from '../../testing/react-test-renderer';
 
 import {createStore} from 'redux';
@@ -20,7 +20,7 @@ const TableRow = () => {}; // mock, and provide only relevant props
 const countRecords = ($it) =>
   Number($it.find('thead tr').at(1).find('th').at(0).text());
 const tbodyShallow = ($it) =>
-  mountToShallowObject($it.find('tbody'));
+  mountToShallowJson($it.find('tbody'));
 const clickAdd = ($it) => {
   $it.find('thead tr').at(0).find('th').at(0).simulate('click');
 };
