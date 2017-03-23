@@ -166,8 +166,8 @@ The rest of examples replace `toMatchSnapshot` with `toMatchObject` to  match 
 
 Proposed to import from `enzyme-to-json`
 
-* `mountToDeepObject` Given an enzyme `mount` wrapper, especially from selector traversal, return a test object rendered to **maximum** depth. It contains only DOM nodes, no React components.
-* `mountToShallowObject` Given an enzyme `mount` wrapper, especially from selector traversal, return a test object rendered to **minimum** depth. It might contain DOM nodes, but any children which are React components are leaves of the tree.
+* `mountToDeepJson` Given an enzyme `mount` wrapper, especially from selector traversal, return a test object rendered to **maximum** depth. It contains only DOM nodes, no React components.
+* `mountToShallowJson` Given an enzyme `mount` wrapper, especially from selector traversal, return a test object rendered to **minimum** depth. It might contain DOM nodes, but any children which are React components are leaves of the tree.
 
 Proposed to import from `react-test-renderer`
 
@@ -176,15 +176,12 @@ Proposed to import from `react-test-renderer`
   * `$$typeof` is enumerable
   * `props` is undefined if there are no properties, not including `children`
   * `children` is undefined if it is `[irrelevant]`
-* `renderAsTestObject` Given a React element, return the rendered result from `renderer.create(element).toJSON()` as a test object:
-  * `$$typeof` is enumerable
-  * `children` is slightly normalized to be **compatible** with the preceding functions
 
 | How do you get the relevant JSX? | When |
 |:---------------------------------|-----:|
 | Type it, based on render method | TDD or non-TDD |
 | Copy from existing Read snapshot, and delete whatever is irrelevant | TDD or non-TDD |
-| Copy from temporary snapshot, and delete whatever is irrelevant | non-TDD |
+| Copy from temporary snapshot, and delete… | non-TDD |
 | *Maybe someday*, paste by editor integration, and delete… | non-TDD |
 
 ### Read or render, part 2
@@ -198,17 +195,16 @@ Example: table head renders ascending or descending ** indicator** only in hea
 
 ```js
 import React from 'react';
-import {
+import renderer, {
   irrelevant,
   relevantTestObject,
-  renderAsTestObject,
-} from 'react-test-renderer';                             // proposed
+} from 'react-test-renderer'; // proposed
 
 import TableHead, {ascending, descending} from '../TableHead';
 
 describe('TableHead', () => {
   it('renders descending indicator in `when` heading', () => {
-    expect(renderAsTestObject(
+    expect(renderer.create(
       <TableHead
         addRow={() => {}}
         count={7}
@@ -219,7 +215,7 @@ describe('TableHead', () => {
           {fieldKey: 'what', descending: false},
         ]})}
       />
-    ).children[1]).toMatchObject(relevantTestObject(
+    ).toJSON().children[1]).toMatchObject(relevantTestObject(
       <tr>
         <th>{irrelevant}</th>
         <th>
@@ -266,10 +262,10 @@ git checkout master
 
 ### Interact
 
-If components render simple views of data, or if you don’t have time to apply other patterns, you might test only:
+If components render simple views of data, or if you don’t have time to apply other patterns, you might test only
 
-* rendering
-* interaction, that  interface **events** cause correct **actions**
+* **R**ead or **r**ender
+* **I**nteract:  interface **events** cause correct **actions**
 
 `jest.fn()` returns a mock function,  also known as a spy, to assert **behavior** of calling code,  not just output.
 
@@ -340,8 +336,8 @@ Example: **add row** to table body
 ```js
 import React from 'react';
 import {mount} from 'enzyme';
-import {mountToShallowObject} from 'enzyme-to-json';      // proposed
-import {relevantTestObject} from 'react-test-renderer';   // proposed
+import {mountToShallowJson} from 'enzyme-to-json';      // proposed
+import {relevantTestObject} from 'react-test-renderer'; // proposed
 
 import Table from '../Table';
 const TableRow = () => {}; // mock, and provide only relevant props
@@ -354,7 +350,7 @@ const countRows = ($it) =>
   Number($it.find('thead tr').at(1).find('th').at(0).text());
 
 const tbodyShallow = ($it) =>
-  mountToShallowObject($it.find('tbody'));
+  mountToShallowJson($it.find('tbody'));
 
 describe('Table', () =>
   it('creates a row preceding one existing row', () => {
@@ -476,8 +472,8 @@ Example: **input or edit text** in table cell
 ```js
 import React from 'react';
 import {mount} from 'enzyme';
-import {mountToDeepObject} from 'enzyme-to-json';         // proposed
-import {relevantTestObject} from 'react-test-renderer';   // proposed
+import {mountToDeepJson} from 'enzyme-to-json';         // proposed
+import {relevantTestObject} from 'react-test-renderer'; // proposed
 
 import Table from '../Table';
 
@@ -487,7 +483,7 @@ describe('Table', () => {
 
     $td.simulate('doubleClick');
     const textInitial = records[rowIndex][fields[fieldIndex].key];
-    expect(mountToDeepObject($td)).toMatchObject(relevantTestObject(
+    expect(mountToDeepJson($td)).toMatchObject(relevantTestObject(
       <td>
         <div>
           <span>{textInitial}</span>
@@ -505,7 +501,7 @@ describe('Table', () => {
     $td.find('input').get(0).value = textUpdated;
 
     $td.find('form').simulate('submit');
-    expect(mountToDeepObject($td)).toMatchObject(relevantTestObject(
+    expect(mountToDeepJson($td)).toMatchObject(relevantTestObject(
       <td>{textUpdated}</td>
     ));
   });
