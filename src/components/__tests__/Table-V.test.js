@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {mount} from 'enzyme';
-import {mountToShallowObject} from '../../testing/enzyme-to-json';
+import {mountToShallowJson} from '../../testing/enzyme-to-json';
 import {relevantTestObject} from '../../testing/react-test-renderer';
 
 import {createStore} from 'redux';
@@ -21,7 +21,7 @@ import {
 import Table from '../Table';
 const TableRow = () => {}; // mock
 
-const tbodyShallow = ($it) => mountToShallowObject($it.find('tbody'));
+const tbodyShallow = ($it) => mountToShallowJson($it.find('tbody'));
 
 describe('Table sorting', () => {
   const clickHeading = ($it, i) => {
