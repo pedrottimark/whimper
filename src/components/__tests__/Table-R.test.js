@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {mount} from 'enzyme';
-import {mountToShallowObject} from '../../testing/enzyme-to-json';
+import {mountToShallowJson} from '../../testing/enzyme-to-json';
 import {relevantTestObject} from '../../testing/react-test-renderer';
 
 import {createStore} from 'redux';
@@ -23,7 +23,7 @@ import {
 
 import Table from '../Table';
 
-const tableShallow = (element) => mountToShallowObject(mount(element).find('table'));
+const tableShallow = (element) => mountToShallowJson(mount(element).find('table'));
 const TableHead = () => {};
 const TableRow = () => {};
 
