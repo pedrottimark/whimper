@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer';
 import {
   irrelevant,
   relevantTestObject,
-} from '../../testing/relevant-test-object';
+} from '../../testing/react-test-renderer';
 
 import {
   sortRecords,
