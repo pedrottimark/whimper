@@ -4,7 +4,7 @@ import {connect, Provider} from 'react-redux';
 
 import {mount} from 'enzyme';
 import {mountToShallowObject} from '../../testing/enzyme-to-json';
-import {irrelevant, relevantTestObject} from '../../testing/relevant-test-object';
+import {irrelevant, relevantTestObject} from '../../testing/react-test-renderer';
 
 import {fieldsReceived as fields} from '../../reducers/fields';
 import view from '../../reducers/view';
