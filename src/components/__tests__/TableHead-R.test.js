@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer';
 import {
   irrelevant,
   relevantTestObject,
-} from '../../testing/relevant-test-object';
+} from '../../testing/react-test-renderer';
 
 import {
   filterRecords,
@@ -73,7 +73,7 @@ describe('TableHead', () => {
         <th>{irrelevant}</th>
         <th>
           <span>{irrelevant}</span>
-          <abbr title=""></abbr>
+          <abbr title="">{''}</abbr>
         </th>
         <th>
           <span>{irrelevant}</span>
@@ -81,7 +81,7 @@ describe('TableHead', () => {
         </th>
         <th>
           <span>{irrelevant}</span>
-          <abbr title=""></abbr>
+          <abbr title="">{''}</abbr>
         </th>
       </tr>
     ));
@@ -117,11 +117,11 @@ describe('TableHead', () => {
         </th>
         <th>
           <span>{irrelevant}</span>
-          <abbr title=""></abbr>
+          <abbr title="">{''}</abbr>
         </th>
         <th>
           <span>{irrelevant}</span>
-          <abbr title=""></abbr>
+          <abbr title="">{''}</abbr>
         </th>
       </tr>
     ));
