@@ -192,7 +192,7 @@ And then, you add markup to `th` as illustrated in the next section **Read or re
 
 If the test object for `th` has an empty `props` object, Jest diff displays a detail that you omitted:
 
-```js
+```diff
 -    <th>
 -      when
 +    <th
