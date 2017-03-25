@@ -32,7 +32,7 @@ The **whimper** app is a parody of Twitter that I adapted from Whinepad in *Reac
 * [create-react-native-app](https://github.com/react-community/create-react-native-app) or [react-native init](facebook.github.io/react-native/docs/getting-started.html)
 * [create-react-app](https://github.com/facebookincubator/create-react-app)
   Sometimes we eject this project from `create-react-app` and upgrade Jest to use a critical new feature.
-  When `react-scripts` catches up with Jest, we [recreate an unejected config](speakerdeck.com/pedrottimark/ uneject-and-recreate-reactjs-charlotte).
+  When `react-scripts` catches up with Jest, we [recreate an unejected config](https://speakerdeck.com/pedrottimark/ uneject-and-recreate-reactjs-charlotte).
 
 ### Only a few other devDependencies
 
