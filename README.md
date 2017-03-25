@@ -164,25 +164,88 @@ git checkout master
 
 The rest of examples replace `toMatchSnapshot` with `toMatchObject` to  match a **relevant subset**  of props and descendants  in **descriptive** JSX.
 
-Proposed to import from `enzyme-to-json`
-
-* `mountToDeepJson` Given an enzyme `mount` wrapper, especially from selector traversal, return a test object rendered to **maximum** depth. It contains only DOM nodes, no React components.
-* `mountToShallowJson` Given an enzyme `mount` wrapper, especially from selector traversal, return a test object rendered to **minimum** depth. It might contain DOM nodes, but any children which are React components are leaves of the tree.
-
-Proposed to import from `react-test-renderer`
-
-* `irrelevant` String sentinel value to **ignore** children, or absence of children, in received object (see below).
-* `relevantTestObject` Given a React element, return the **unrendered** element as a test object:
-  * `$$typeof` is enumerable
-  * `props` is undefined if there are no properties, not including `children`
-  * `children` is undefined if it is `[irrelevant]`
-
 | How do you get the relevant JSX? | When |
 |:---------------------------------|-----:|
 | Type it, based on render method | TDD or non-TDD |
 | Copy from existing Read snapshot, and delete whatever is irrelevant | TDD or non-TDD |
 | Copy from temporary snapshot, and delete… | non-TDD |
 | *Maybe someday*, paste by editor integration, and delete… | non-TDD |
+
+#### Proposed to import from `enzyme-to-json`
+
+* `mountToDeepJson` Given an enzyme `mount` wrapper, especially from selector traversal, return a test object rendered to **maximum** depth. It contains only DOM nodes, no React components.
+* `mountToShallowJson` Given an enzyme `mount` wrapper, especially from selector traversal, return a test object rendered to **minimum** depth. It might contain DOM nodes, but any children which are React components are leaves of the tree.
+
+#### Proposed to import from `react-test-renderer`
+
+* `irrelevant` String sentinel value to **ignore** children, or absence of children, in received object
+* `relevantTestObject` Given a React element, return the **unrendered** element as a test object:
+  * `$$typeof` is enumerable
+  * `props` is omitted if there are no properties, not including `children`
+  * `children` is omitted if it is `[irrelevant]`
+
+#### Why does `relevantTestObject` omit `props` when it’s empty?
+
+Suppose the expected value of `th` omits `scope="col"` as an irrelevant detail in a `toMatchObject` assertion, because snapshots already protect against regressions in accessibility.
+
+And then, you add markup to `th` as illustrated in the next section **Read or render, part 2**
+
+If the test object for `th` has an empty `props` object, Jest diff displays a detail that you omitted:
+
+```js
+-    <th>
+-      when
++    <th
++      scope="col"
++    >
++      <span>
++        when
++      </span>
++      <abbr
++        title="ascending"
++      >
++        ↓
++      </abbr>
+     </th>
+```
+
+If the test object for `th` omits `props` because it’s empty, Jest diff displays the change more clearly:
+
+```diff
+     <th>
+-      when
++      <span>
++        when
++      </span>
++      <abbr
++        title="ascending"
++      >
++        ↓
++      </abbr>
+     </th>
+```
+
+If it understood indentation better, Jest diff could display the change even more clearly:
+
+```diff
+     <th>
++      <span>
+         when
++      </span>
++      <abbr
++        title="ascending"
++      >
++        ↓
++      </abbr>
+     </th>
+```
+
+#### Why does `relevantTestObject` let you omit `irrelevant` children?
+
+Suppose you replace ordinary plus sign + with heavy plus sign ➕ as text in the `button` to add a row.
+
+* To confirm expected progress, you need to update snapshots for `TableHead`.
+* Because a change to that button is an irrelevant detail in `toMatchObject` assertions about sorting indicators illustrated in the next section, you will see `<th>{irrelevant}</th>` for the first heading cell.
 
 ### Read or render, part 2
 
