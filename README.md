@@ -20,10 +20,10 @@ The **whimper** app is a parody of Twitter that I adapted from Whinepad in *Reac
 
 ### 4C to communicate when you write a test
 
-* **C**orrect: now of course, but is it practical  to keep test correct when code changes?
+* **C**orrect: what does it assert about the contract? will it be practical  to keep test correct when code changes?
 * **C**lear: where to fix code when test fails
 * **C**omplete: fewer tests that fit your priorities  for quality-scope-cost are better than more tests that don’t
-* **C**onsistent: apply patterns  for operations which occur 80% of the time
+* **C**onsistent: apply patterns  for 20% of operations which occur 80% of the time
 
 ### Zero configuration testing with Jest
 
@@ -38,8 +38,8 @@ The **whimper** app is a parody of Twitter that I adapted from Whinepad in *Reac
 
 * react-addons-test-utils is peer dependency for enzyme
 * [enzyme](http://airbnb.io/enzyme/) returns a wrapper, as in jQuery
-  * [shallow](http://airbnb.io/enzyme/docs/api/shallow.html) renders component one level deep, to test it independent of how children are implemented
-  * [mount](http://airbnb.io/enzyme/docs/api/mount.html) renders component to full depth in simulated DOM
+  * [mount](http://airbnb.io/enzyme/docs/api/mount.html) renders component to **maximum** depth in simulated DOM. It contains only DOM nodes, no React components.
+  * [shallow](http://airbnb.io/enzyme/docs/api/shallow.html) renders component to **minimum** depth, to test it independent of how children are implemented. It might contain DOM nodes, but any children which are React components are leaves of the tree.
 * [enzyme-to-json](https://github.com/adriantoine/enzyme-to-json) converts enzyme wrapper to test object compatible with `toMatchSnapshot` assertion
 * react-test-renderer renders component as test object compatible with `toMatchSnapshot` assertion
 
@@ -439,6 +439,8 @@ describe('Table', () =>
   // and so on
 });
 ```
+
+`countRows` is a typical value assertion. I use them too when it fits my goal :)
 
 ### Delete
 
