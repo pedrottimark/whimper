@@ -74,12 +74,12 @@ This first example contrasts two methods.
 
   * simulate child components or DOM nodes
   * traverse by selector
-  * assert each expected value,  but it can be **hard to see** too many criteria
+  * assert each expected value,  but it can be **harder to see** too many criteria
 
 * Proposed: the `toMatchSnapshot` assertion  matches props and descendants  in “descriptive” JSX
 
   A few snapshots which control changes  to a component do more good than harm,
-  * because it’s **easy to see** descriptive criteria,
+  * because it’s **easier to see** descriptive criteria,
   * if you know that’s their goal,
   * from the name of the test file. For example, TableHead-**R**.test.js
 
@@ -155,7 +155,7 @@ git checkout master
 
 [https://medium.com/@suchipi/thanks-for-your-response-e8e9217db08f](https://medium.com/@suchipi/thanks-for-your-response-e8e9217db08f)
 
-**Purposeful** testing, when you write a test, minimize:
+**Purposeful** testing, when you design a test, minimize:
 
 * irrelevant details, which cause
 * unnecessary updates, which risk
@@ -166,7 +166,7 @@ The rest of examples replace `toMatchSnapshot` with `toMatchObject` to  match 
 
 | How do you get the relevant JSX? | When |
 |:---------------------------------|-----:|
-| Type it, based on render method | TDD or non-TDD |
+| Type it, before you implement render method | TDD or non-TDD |
 | Copy from existing Read snapshot, and delete whatever is irrelevant | TDD or non-TDD |
 | Copy from temporary snapshot, and delete… | non-TDD |
 | *Maybe someday*, paste by editor integration, and delete… | non-TDD |
@@ -386,7 +386,7 @@ describe('TableHead', () => {
 An action **adds a child** to a component.
 
 * **where**: add to correct place in siblings
-* **what**: delegate details about children
+* **what**: delegate details about children to their **r**ender tests
 * **what else**: update the (derived) state?
 
 Example: **add row** to table body
@@ -440,14 +440,14 @@ describe('Table', () =>
 });
 ```
 
-`countRows` is a typical value assertion. I use them too when it fits my goal :)
+`countRows` is in a typical expected value assertion. I use them when they fit my goal :)
 
 ### Delete
 
 An action **removes a child** from a component.
 
 * **where**: remove from correct place in siblings
-* **what**: delegate details about children
+* **what**: delegate details about children to their **r**ender tests
 * **what else**: update the (derived) state?
 
 Example: **delete row** from table body
@@ -547,14 +547,14 @@ describe('Table', () => {
     // initialize $td
 
     $td.simulate('doubleClick');
-    const textInitial = records[rowIndex][fields[fieldIndex].key];
+    const textPrev = records[rowIndex][fields[fieldIndex].key];
     expect(mountToDeepJson($td)).toMatchObject(relevantTestObject(
       <td>
         <div>
-          <span>{textInitial}</span>
+          <span>{textPrev}</span>
           <form>
             <input
-              defaultValue={textInitial}
+              defaultValue={textPrev}
               type="text"
             />
           </form>
@@ -562,12 +562,12 @@ describe('Table', () => {
       </td>
     ));
 
-    const textUpdated = 'ECMAScript 2015';
-    $td.find('input').get(0).value = textUpdated;
+    const textNext = 'ECMAScript 2015';
+    $td.find('input').get(0).value = textNext;
 
     $td.find('form').simulate('submit');
     expect(mountToDeepJson($td)).toMatchObject(relevantTestObject(
-      <td>{textUpdated}</td>
+      <td>{textNext}</td>
     ));
   });
 });
@@ -577,6 +577,8 @@ describe('Table', () => {
 
 * Baseline: add as many abstract assertions as you can?
 * Proposed: **delete** as many **irrelevant** details as you can!
+
+> Il semble que la perfection soit atteinte non quand il n'y a plus rien à ajouter, mais quand il n'y a plus rien à **retrancher**.
 
 > It seems that perfection is attained not when there is nothing more to add, but when there is nothing more to **remove**.
 
