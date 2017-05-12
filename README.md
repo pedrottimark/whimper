@@ -4,30 +4,30 @@ The **whimper** app is a parody of Twitter that I adapted from Whinepad in *Reac
 
 ![whimper displays a table with 7 rows and 4 columns](images/whimper.png)
 
-## Let’s start with  the ~~bug~~ big picture
+## Let’s start with the ~~bug~~ big picture
 
-> Dave Ceddia: The main reason to write tests is to ensure  that your app works the way it should. Test the **high-value** features. You click an “Add to Cart” button.  The app had better add that item to the cart.
+> Dave Ceddia: The main reason to write tests is to ensure that your app works the way it should. Test the **high-value** features. You click an “Add to Cart” button. The app had better add that item to the cart.
 
 [https://daveceddia.com/what-to-test-in-react-app/](https://daveceddia.com/what-to-test-in-react-app/)
 
-> Marcin Grzywaczewski: When you test React components: Given properties and state, what **structure**? Behavior or **interaction**: is there a possibility  to transition from state A to state B?
+> Marcin Grzywaczewski: When you test React components: Given properties and state, what **structure**? Behavior or **interaction**: is there a possibility to transition from state A to state B?
 
 [http://reactkungfu.com/2015/07/approaches-to-testing-react-components-an-overview/](http://reactkungfu.com/2015/07/approaches-to-testing-react-components-an-overview/)
 
-> Stephen Scott: Writing tests defines your component’s **contract**. From an outsider’s perspective,  is this detail important? Don’t duplicate the application code.
+> Stephen Scott: Writing tests defines your component’s **contract**. From an outsider’s perspective, is this detail important? Don’t duplicate the application code.
 
 [https://medium.com/@suchipi/the-right-way-to-test-react-components-548a4736ab22](https://medium.com/@suchipi/the-right-way-to-test-react-components-548a4736ab22)
 
 ### 4C to communicate when you write a test
 
-* **C**orrect: what does it assert about the contract? will it be practical  to keep test correct when code changes?
+* **C**orrect: what does it assert about the contract? will it be practical to keep test correct when code changes?
 * **C**lear: where to fix code when test fails
-* **C**omplete: fewer tests that fit your priorities  for quality-scope-cost are better than more tests that don’t
-* **C**onsistent: apply patterns  for 20% of operations which occur 80% of the time
+* **C**omplete: fewer tests that fit your priorities for quality-scope-cost are better than more tests that don’t
+* **C**onsistent: apply patterns for 20% of operations which occur 80% of the time
 
 ### Zero configuration testing with Jest
 
-[Jest](http://facebook.github.io/jest/) is already configured  if you create a project with:
+[Jest](http://facebook.github.io/jest/) is already configured if you create a project with:
 
 * [create-react-native-app](https://github.com/react-community/create-react-native-app) or [react-native init](facebook.github.io/react-native/docs/getting-started.html)
 * [create-react-app](https://github.com/facebookincubator/create-react-app)
@@ -43,7 +43,7 @@ The **whimper** app is a parody of Twitter that I adapted from Whinepad in *Reac
 * [enzyme-to-json](https://github.com/adriantoine/enzyme-to-json) converts enzyme wrapper to test object compatible with `toMatchSnapshot` assertion
 * react-test-renderer renders component as test object compatible with `toMatchSnapshot` assertion
 
-## Let’s move to  a smaller picture
+## Let’s move to a smaller picture
 
 Beware of “one size fits all”
 
@@ -63,7 +63,7 @@ Instead, select tools to fit your **goals**.
 
 ### Read or render, part 1
 
-Given combinations of **props** and **state**  as input,  the component renders correct output:
+Given combinations of **props** and **state**  as input, the component renders correct output:
 
 * what people “see” including accessibility
 * what child components receive as props
@@ -74,11 +74,11 @@ This first example contrasts two methods.
 
   * simulate child components or DOM nodes
   * traverse by selector
-  * assert each expected value,  but it can be **harder to see** too many criteria
+  * assert each expected value, but it can be **harder to see** too many criteria
 
-* Proposed: the `toMatchSnapshot` assertion  matches props and descendants  in “descriptive” JSX
+* Proposed: the `toMatchSnapshot` assertion matches props and descendants in “descriptive” JSX
 
-  A few snapshots which control changes  to a component do more good than harm,
+  A few snapshots which control changes to a component do more good than harm,
   * because it’s **easier to see** descriptive criteria,
   * if you know that’s their goal,
   * from the name of the test file. For example, TableHead-**R**.test.js
@@ -135,8 +135,8 @@ git checkout master
 
 **Painless** snapshot testing, to control changes in components:
 
-* Prevent unexpected **regression**.  If change is incorrect, then fix code.
-* Confirm expected **progress**.  If change is correct, then update snapshot.
+* Prevent unexpected **regression**. If change is incorrect, then fix code.
+* Confirm expected **progress**. If change is correct, then update snapshot.
 
 **Painful** snapshot testing, if you let the effort get out of balance:
 
@@ -151,7 +151,7 @@ git checkout master
 
 [https://twitter.com/cpojer/status/774427994077048832](https://twitter.com/cpojer/status/774427994077048832)
 
-> Stephen Scott: A snapshot test does not tell you your code **broke**, only that it **changed**. It is easier to explain exactly which pieces you care about with the imperative approach, but I would love to see  **tooling** change that opinion.
+> Stephen Scott: A snapshot test does not tell you your code **broke**, only that it **changed**. It is easier to explain exactly which pieces you care about with the imperative approach, but I would love to see **tooling** change that opinion.
 
 [https://medium.com/@suchipi/thanks-for-your-response-e8e9217db08f](https://medium.com/@suchipi/thanks-for-your-response-e8e9217db08f)
 
@@ -162,7 +162,7 @@ git checkout master
 * incorrect decisions, especially
 * false negatives, failing to report an error
 
-The rest of examples replace `toMatchSnapshot` with `toMatchObject` to  match a **relevant subset**  of props and descendants  in **descriptive** JSX.
+The rest of examples replace `toMatchSnapshot` with `toMatchObject` to match a **relevant subset** of props and descendants in **descriptive** JSX.
 
 | How do you get the relevant JSX? | When |
 |:---------------------------------|-----:|
@@ -225,7 +225,7 @@ If the test object for `th` omits `props` because it’s empty, Jest diff displa
      </th>
 ```
 
-If it understood indentation better, Jest diff could display the change even more clearly:
+If Jest understood indentation better, its diff could display the change even more clearly:
 
 ```diff
      <th>
@@ -249,7 +249,7 @@ Suppose you replace ordinary plus sign + with heavy plus sign ➕ as text in the
 
 ### Read or render, part 2
 
-Example: table head renders ascending or descending ** indicator** only in heading of primary sort field
+Example: table head renders ascending or descending **indicator** only in heading of primary sort field
 
 ![second row has down-arrow at the right of the first of three fields](images/read-2-example-descending.png)
 
@@ -309,8 +309,8 @@ To type a substring, add `input` element at right of first `tr`.
 
 ![first row has input at right to type filter substring](images/read-3-example-filter.png)
 
-* Because the baseline assertion passes,  you must **remember** to update it.
-* Because one proposed snapshot fails,  you must **decide** to update it.
+* Because the baseline assertion passes, you must **remember** to update it.
+* Because one proposed snapshot fails, you must **decide** to update it.
 
 ```sh
 git checkout diff-filter
@@ -328,9 +328,9 @@ git checkout master
 If components render simple views of data, or if you don’t have time to apply other patterns, you might test only
 
 * **R**ead or **r**ender
-* **I**nteract:  interface **events** cause correct **actions**
+* **I**nteract: interface **events** cause correct **actions**
 
-`jest.fn()` returns a mock function,  also known as a spy, to assert **behavior** of calling code,  not just output.
+`jest.fn()` returns a mock function, also known as a spy, to assert **behavior** of calling code, not just output.
 
 Example: **click cells** in table head
 
@@ -584,7 +584,7 @@ describe('Table', () => {
 
 — Antoine de Saint Exupéry
 
->  detect and fix any problem…at the lowest-value stage possible…at the unit test of the pieces…rather than in the course of the test of the final product itself
+>  detect and fix any problem…at the lowest-value stage possible…at the unit test of the pieces…rather than in the test of the final product itself
 
 — Andrew S. Grove in *High Output Management*
 
