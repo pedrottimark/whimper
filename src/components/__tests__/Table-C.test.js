@@ -12,15 +12,15 @@ import reducer from '../../reducers';
 import {fieldsInitial, fieldsReceived as fields} from '../../reducers/fields';
 import {recordsInitial, recordDefault} from '../../reducers/records';
 import {
-  clickAdd,
-  countRecords,
-  tbodyShallow,
-} from '../../testing/selectors';
-import {
   recordB,
   recordC,
   recordD,
 } from '../../testing/records-data';
+import {
+  clickAdd,
+  countRecords,
+  tbodyShallow,
+} from '../../testing/selectors';
 
 import Table from '../Table';
 const TableRow = () => {}; // mock, and provide only relevant props
