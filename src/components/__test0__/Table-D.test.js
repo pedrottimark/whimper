@@ -10,17 +10,17 @@ import {receiveData} from '../../actions';
 import reducer from '../../reducers';
 import {fieldsReceived as fields} from '../../reducers/fields';
 import {
-  clickDelete,
-  countRecords,
-  countTableRows,
-  recordAtTableRow,
-} from '../../testing/selectors';
-import {
   recordA,
   recordB,
   recordC,
   recordD,
 } from '../../testing/records-data';
+import {
+  clickDelete,
+  countRecords,
+  countTableRows,
+  recordAtTableRow,
+} from '../../testing/selectors';
 
 import Table from '../Table';
 

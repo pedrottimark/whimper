@@ -11,14 +11,14 @@ import {receiveData,} from '../../actions';
 import reducer from '../../reducers';
 import {fieldsReceived as fields} from '../../reducers/fields';
 import {
-  $tdAtIndex,
-} from '../../testing/selectors';
-import {
   recordA,
   recordB,
   recordC,
   recordD,
 } from '../../testing/records-data';
+import {
+  $tdAtIndex,
+} from '../../testing/selectors';
 
 const records = [recordA, recordB, recordC, recordD];
 
