@@ -10,18 +10,19 @@ import {receiveData} from '../../actions';
 import reducer from '../../reducers';
 import {fieldsInitial, fieldsReceived as fields} from '../../reducers/fields';
 import {recordsInitial, recordDefault} from '../../reducers/records';
-import {recordB, recordC, recordD} from '../../testing/records-data';
+import {
+  clickAdd,
+  countRecords,
+  countTableRows,
+  recordAtTableRow,
+} from '../../testing/selectors';
+import {
+  recordB,
+  recordC,
+  recordD,
+} from '../../testing/records-data';
 
 import Table from '../Table';
-
-const countRows = ($it) =>
-  Number($it.find('thead tr').at(1).find('th').at(0).text());
-const clickAdd = ($it) => {
-  $it.find('thead tr').at(0).find('th').at(0).simulate('click');
-};
-const recordAtTableRow = ($it, i) =>
-  $it.find('TableRow').at(i).prop('record');
-const countTableRows = ($it) => $it.find('TableRow').length;
 
 describe('Table', () => {
   it('creates a row with initial empty fields', () => {
@@ -34,7 +35,7 @@ describe('Table', () => {
     );
 
     clickAdd($it);
-    expect(countRows($it)).toEqual(recordsInitial.length + 1);
+    expect(countRecords($it)).toEqual(recordsInitial.length + 1);
     expect(recordAtTableRow($it, 0)).toEqual(recordAdded);
   });
 
@@ -49,7 +50,7 @@ describe('Table', () => {
     );
 
     clickAdd($it);
-    expect(countRows($it)).toEqual(recordsInitial.length + 1);
+    expect(countRecords($it)).toEqual(recordsInitial.length + 1);
     expect(countTableRows($it)).toEqual(recordsInitial.length + 1);
     expect(recordAtTableRow($it, 0)).toEqual(recordAdded);
   });
@@ -66,7 +67,7 @@ describe('Table', () => {
     );
 
     clickAdd($it);
-    expect(countRows($it)).toEqual(records.length + 1);
+    expect(countRecords($it)).toEqual(records.length + 1);
     expect(countTableRows($it)).toEqual(records.length + 1);
     expect(recordAtTableRow($it, 0)).toEqual(recordAdded);
     expect(recordAtTableRow($it, 1)).toEqual(recordB);
@@ -84,7 +85,7 @@ describe('Table', () => {
     );
 
     clickAdd($it);
-    expect(countRows($it)).toEqual(records.length + 1);
+    expect(countRecords($it)).toEqual(records.length + 1);
     expect(countTableRows($it)).toEqual(records.length + 1);
     expect(recordAtTableRow($it, 0)).toEqual(recordAdded);
     expect(recordAtTableRow($it, 1)).toEqual(recordB);

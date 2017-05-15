@@ -10,6 +10,12 @@ import {receiveData} from '../../actions';
 import reducer from '../../reducers';
 import {fieldsReceived as fields} from '../../reducers/fields';
 import {
+  clickDelete,
+  countRecords,
+  countTableRows,
+  recordAtTableRow,
+} from '../../testing/selectors';
+import {
   recordA,
   recordB,
   recordC,
@@ -17,15 +23,6 @@ import {
 } from '../../testing/records-data';
 
 import Table from '../Table';
-
-const clickDelete = ($it, i) => {
-  $it.find('tbody tr').at(i).find('td').at(0).simulate('click');
-};
-const countRows = ($it) =>
-  Number($it.find('thead tr').at(1).find('th').at(0).text());
-const recordAtTableRow = ($it, i) =>
-  $it.find('TableRow').at(i).prop('record');
-const countTableRows = ($it) => $it.find('TableRow').length;
 
 describe('Table deletes records', () => {
   const store = createStore(reducer);
@@ -39,7 +36,7 @@ describe('Table deletes records', () => {
 
   test('in the middle', () => {
     clickDelete($it, 1); // recordB is in the middle
-    expect(countRows($it)).toEqual(records.length - 1);
+    expect(countRecords($it)).toEqual(records.length - 1);
     expect(countTableRows($it)).toEqual(records.length - 1);
     expect(recordAtTableRow($it, 0)).toEqual(recordA);
     expect(recordAtTableRow($it, 1)).toEqual(recordC);
@@ -48,7 +45,7 @@ describe('Table deletes records', () => {
 
   test('at the end', () => {
     clickDelete($it, 2);
-    expect(countRows($it)).toEqual(records.length - 2);
+    expect(countRecords($it)).toEqual(records.length - 2);
     expect(countTableRows($it)).toEqual(records.length - 2);
     expect(recordAtTableRow($it, 0)).toEqual(recordA);
     expect(recordAtTableRow($it, 1)).toEqual(recordC);
@@ -56,14 +53,14 @@ describe('Table deletes records', () => {
 
   test('at the beginning', () => {
     clickDelete($it, 0);
-    expect(countRows($it)).toEqual(records.length - 3);
+    expect(countRecords($it)).toEqual(records.length - 3);
     expect(countTableRows($it)).toEqual(records.length - 3);
     expect(recordAtTableRow($it, 0)).toEqual(recordC);
   });
 
   test('at the beginning and end', () => {
     clickDelete($it, 0);
-    expect(countRows($it)).toEqual(records.length - 4);
+    expect(countRecords($it)).toEqual(records.length - 4);
     expect(countTableRows($it)).toEqual(records.length - 4);
   });
 });
