@@ -12,6 +12,10 @@ import {receiveData} from '../../actions';
 import reducer from '../../reducers';
 import {fieldsReceived as fields} from '../../reducers/fields';
 import {
+  clickHeading,
+  tbodyShallow,
+} from '../../testing/selectors';
+import {
   recordA,
   recordB,
   recordC,
@@ -21,13 +25,7 @@ import {
 import Table from '../Table';
 const TableRow = () => {}; // mock
 
-const tbodyShallow = ($it) => mountToShallowJson($it.find('tbody'));
-
 describe('Table sorting', () => {
-  const clickHeading = ($it, i) => {
-    $it.find('thead tr').at(1).find('th').at(1 + i).simulate('click');
-  };
-
   const records = [recordA, recordB, recordC, recordD];
   const store = createStore(reducer);
   store.dispatch(receiveData(fields, records));

@@ -11,16 +11,20 @@ import {Provider} from 'react-redux';
 import {receiveData} from '../../actions';
 import reducer from '../../reducers';
 import {fieldsReceived as fields} from '../../reducers/fields';
-import {recordA, recordB, recordC, recordD} from '../../testing/records-data';
+import {
+  clickDelete,
+  countRecords,
+  tbodyShallow,
+} from '../../testing/selectors';
+import {
+  recordA,
+  recordB,
+  recordC,
+  recordD,
+} from '../../testing/records-data';
 
 import Table from '../Table';
 const TableRow = () => {}; // mock, and provide only relevant props
-
-const clickDelete = ($it, i) => {
-  $it.find('tbody tr').at(i).find('td').at(0).simulate('click');
-};
-const countRows = ($it) => Number($it.find('thead tr').at(1).find('th').at(0).text());
-const tbodyShallow = ($it) => mountToShallowJson($it.find('tbody'));
 
 describe('Table deletes records', () => {
   const store = createStore(reducer);
@@ -34,7 +38,7 @@ describe('Table deletes records', () => {
 
   test('in the middle', () => {
     clickDelete($it, 1); // recordB is in the middle
-    expect(countRows($it)).toEqual(records.length - 1);
+    expect(countRecords($it)).toEqual(records.length - 1);
     expect(tbodyShallow($it)).toMatchObject(relevantTestObject(
       <tbody>
         <TableRow record={recordA} />
@@ -46,7 +50,7 @@ describe('Table deletes records', () => {
 
   test('at the end', () => {
     clickDelete($it, 2);
-    expect(countRows($it)).toEqual(records.length - 2);
+    expect(countRecords($it)).toEqual(records.length - 2);
     expect(tbodyShallow($it)).toMatchObject(relevantTestObject(
       <tbody>
         <TableRow record={recordA} />
@@ -57,7 +61,7 @@ describe('Table deletes records', () => {
 
   test('at the beginning', () => {
     clickDelete($it, 0);
-    expect(countRows($it)).toEqual(records.length - 3);
+    expect(countRecords($it)).toEqual(records.length - 3);
     expect(tbodyShallow($it)).toMatchObject(relevantTestObject(
       <tbody>
         <TableRow record={recordC} />
@@ -67,7 +71,7 @@ describe('Table deletes records', () => {
 
   test('at the beginning and end', () => {
     clickDelete($it, 0);
-    expect(countRows($it)).toEqual(records.length - 4);
+    expect(countRecords($it)).toEqual(records.length - 4);
     expect(tbodyShallow($it)).toMatchObject(relevantTestObject(
       <tbody />
     ));

@@ -10,14 +10,19 @@ import {Provider} from 'react-redux';
 import {receiveData,} from '../../actions';
 import reducer from '../../reducers';
 import {fieldsReceived as fields} from '../../reducers/fields';
-import {recordA, recordB, recordC, recordD} from '../../testing/records-data';
+import {
+  $tdAtIndex,
+} from '../../testing/selectors';
+import {
+  recordA,
+  recordB,
+  recordC,
+  recordD,
+} from '../../testing/records-data';
 
 const records = [recordA, recordB, recordC, recordD];
 
 import Table from '../Table';
-
-const $tdAtIndex = ($it, rowIndex, fieldIndex) =>
-  $it.find('tbody tr').at(rowIndex).find('td').at(1 + fieldIndex);
 
 describe('Table', () => {
   it('updates a number field', () => {
