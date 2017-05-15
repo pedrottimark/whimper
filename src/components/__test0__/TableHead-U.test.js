@@ -8,8 +8,8 @@ import {fieldsReceived as fields} from '../../reducers/fields';
 import view from '../../reducers/view';
 import {sortRecords} from '../../actions';
 import {
-  clickHeading,
   abbrAt,
+  clickHeading,
 } from '../../testing/selectors';
 
 import TableHead, {
