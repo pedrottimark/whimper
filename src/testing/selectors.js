@@ -47,5 +47,8 @@ export const countTableRows = ($table) =>
 export const recordAtTableRow = ($table, rowIndex) =>
   $table.find('TableRow').at(rowIndex).prop('record');
 
-export const textAt = ($table, fieldIndex) =>
-  $table.find('abbr').at(fieldIndex).text();
+export const abbrAt = ($table, fieldIndex) =>
+  $table.find('thead tr').at(1).find('abbr').at(fieldIndex).text();
+
+export const labelAt = ($thead, fieldIndex) =>
+  $thead.find('tr').at(1).find('th').at(1 + fieldIndex).text();
