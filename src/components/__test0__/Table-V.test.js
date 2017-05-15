@@ -10,6 +10,8 @@ import {receiveData} from '../../actions';
 import reducer from '../../reducers';
 import {fieldsReceived as fields} from '../../reducers/fields';
 import {
+  changeFilter,
+  countRecords,
   recordAtTableRow,
 } from '../../testing/selectors';
 import {
@@ -17,68 +19,58 @@ import {
   recordB,
   recordC,
   recordD,
+  recordE,
+  recordF,
+  recordG,
 } from '../../testing/records-data';
 
 import Table from '../Table';
-const TableRow = () => {}; // mock, and provide only relevant props
 
-/*
-describe('Table filters rows according to filter string', () => {
-    const store = createStore(reducer);
-    const records = [recordA, recordB, recordC, recordD];
-    store.dispatch(receiveData(fields, records));
-    const $it = mount(
-      <Provider store={store}>
-        <Table />
-      </Provider>
-    );
+describe('Table filtering', () => {
+  const records = [recordA, recordB, recordC, recordD, recordE, recordF, recordG];
+  const store = createStore(reducer);
+  store.dispatch(receiveData(fields, records));
+  const $it = mount(
+    <Provider store={store}>
+      <Table />
+    </Provider>
+  );
 
-    // t
-    expect(countRecords($it)).toEqual(4);
-    expect(tbodyShallow($it)).toMatchObject(relevantTestObject(
-      <tbody>
-        <TableRow record={recordA} />
-        <TableRow record={recordB} />
-        <TableRow record={recordC} />
-        <TableRow record={recordD} />
-      </tbody>
-    ));
+  it('matches all rows', () => {
+    changeFilter($it, '1');
+    expect(countRecords($it)).toEqual(records.length);
+  });
 
-    // to
+  it('matches fewer rows', () => {
+    changeFilter($it, '10');
     expect(countRecords($it)).toEqual(2);
-    expect(tbodyShallow($it)).toMatchObject(relevantTestObject(
-      <tbody>
-        <TableRow record={recordA} />
-        <TableRow record={recordD} />
-      </tbody>
-    ));
+    expect(recordAtTableRow($it, 0)).toEqual(recordD);
+    expect(recordAtTableRow($it, 1)).toEqual(recordG);
+  });
 
-    // too
+  it('matches same rows', () => {
+    changeFilter($it, '10 ');
+    expect(countRecords($it)).toEqual(2);
+    expect(recordAtTableRow($it, 0)).toEqual(recordD);
+    expect(recordAtTableRow($it, 1)).toEqual(recordG);
+  });
+
+  it('matches even fewer rows', () => {
+    changeFilter($it, '10 y');
     expect(countRecords($it)).toEqual(1);
-    expect(tbodyShallow($it)).toMatchObject(relevantTestObject(
-      <tbody>
-        <TableRow record={recordD} />
-      </tbody>
-    ));
+    expect(recordAtTableRow($it, 0)).toEqual(recordD);
+  });
 
-    // tool
+  it('matches no rows', () => {
+    changeFilter($it, '10 yr');
     expect(countRecords($it)).toEqual(0);
-    expect(tbodyShallow($it)).toMatchObject(relevantTestObject(
-      <tbody>
-      </tbody>
-    ));
+  });
 
-    // l
-    expect(countRecords($it)).toEqual(3);
-    expect(tbodyShallow($it)).toMatchObject(relevantTestObject(
-      <tbody>
-        <TableRow record={recordA} />
-        <TableRow record={recordB} />
-        <TableRow record={recordD} />
-      </tbody>
-    ));
+  it('matches all rows again', () => {
+    changeFilter($it, '');
+    expect(countRecords($it)).toEqual(records.length);
+  });
 });
-*/
 
 describe('Table sorting', () => {
   const clickHeading = ($it, i) => {
