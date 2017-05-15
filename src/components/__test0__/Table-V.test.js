@@ -10,11 +10,6 @@ import {receiveData} from '../../actions';
 import reducer from '../../reducers';
 import {fieldsReceived as fields} from '../../reducers/fields';
 import {
-  changeFilter,
-  countRecords,
-  recordAtTableRow,
-} from '../../testing/selectors';
-import {
   recordA,
   recordB,
   recordC,
@@ -23,6 +18,11 @@ import {
   recordF,
   recordG,
 } from '../../testing/records-data';
+import {
+  changeFilter,
+  countRecords,
+  recordAtTableRow,
+} from '../../testing/selectors';
 
 import Table from '../Table';
 

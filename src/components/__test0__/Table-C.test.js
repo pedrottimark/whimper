@@ -11,16 +11,16 @@ import reducer from '../../reducers';
 import {fieldsInitial, fieldsReceived as fields} from '../../reducers/fields';
 import {recordsInitial, recordDefault} from '../../reducers/records';
 import {
+  recordB,
+  recordC,
+  recordD,
+} from '../../testing/records-data';
+import {
   clickAdd,
   countRecords,
   countTableRows,
   recordAtTableRow,
 } from '../../testing/selectors';
-import {
-  recordB,
-  recordC,
-  recordD,
-} from '../../testing/records-data';
 
 import Table from '../Table';
 
