@@ -7,6 +7,10 @@ import {mount} from 'enzyme';
 import {fieldsReceived as fields} from '../../reducers/fields';
 import view from '../../reducers/view';
 import {sortRecords} from '../../actions';
+import {
+  clickHeading,
+  textAt,
+} from '../../testing/selectors';
 
 import TableHead, {
   ascending,
@@ -14,11 +18,6 @@ import TableHead, {
 } from '../TableHead';
 
 describe('TableHead sorting indicator', () => {
-  const clickHeading = ($it, i) => {
-    $it.find('tr').at(1).find('th').at(1 + i).simulate('click');
-  }
-  const textAt = ($it, i) => $it.find('abbr').at(i).text();
-
   const Connected = connect(
     state => ({
       view: state
