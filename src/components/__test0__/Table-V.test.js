@@ -10,6 +10,9 @@ import {receiveData} from '../../actions';
 import reducer from '../../reducers';
 import {fieldsReceived as fields} from '../../reducers/fields';
 import {
+  recordAtTableRow,
+} from '../../testing/selectors';
+import {
   recordA,
   recordB,
   recordC,
@@ -19,11 +22,6 @@ import {
 import Table from '../Table';
 const TableRow = () => {}; // mock, and provide only relevant props
 
-const typeFilter = ($it) => {
-  $it.find('thead input').simulate('TODO');
-};
-const countRecords = ($it) => Number($it.find('thead tr').at(1).find('th').at(0).text());
-const recordAtTableRow = ($it, i) => $it.find('TableRow').at(i).prop('record');
 /*
 describe('Table filters rows according to filter string', () => {
     const store = createStore(reducer);
