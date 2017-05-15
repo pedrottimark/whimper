@@ -11,15 +11,15 @@ import {receiveData} from '../../actions';
 import reducer from '../../reducers';
 import {fieldsReceived as fields} from '../../reducers/fields';
 import {
-  clickHeading,
-  tbodyShallow,
-} from '../../testing/selectors';
-import {
   recordA,
   recordB,
   recordC,
   recordD,
 } from '../../testing/records-data';
+import {
+  clickHeading,
+  tbodyShallow,
+} from '../../testing/selectors';
 
 import Table from '../Table';
 const TableRow = () => {}; // mock
