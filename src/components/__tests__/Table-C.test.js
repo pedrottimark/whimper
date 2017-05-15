@@ -2,7 +2,6 @@
 
 import React from 'react';
 import {mount} from 'enzyme';
-import {mountToShallowJson} from '../../testing/enzyme-to-json';
 import {relevantTestObject} from '../../testing/react-test-renderer';
 
 import {createStore} from 'redux';
@@ -13,15 +12,15 @@ import reducer from '../../reducers';
 import {fieldsInitial, fieldsReceived as fields} from '../../reducers/fields';
 import {recordsInitial, recordDefault} from '../../reducers/records';
 import {
-  clickAdd,
-  countRecords,
-  tbodyShallow,
-} from '../../testing/selectors';
-import {
   recordB,
   recordC,
   recordD,
 } from '../../testing/records-data';
+import {
+  clickAdd,
+  countRecords,
+  tbodyShallow,
+} from '../../testing/selectors';
 
 import Table from '../Table';
 const TableRow = () => {}; // mock, and provide only relevant props

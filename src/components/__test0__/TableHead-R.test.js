@@ -5,8 +5,9 @@ import {
   fieldsInitial,
   fieldsReceived as fields,
 } from '../../reducers/fields';
-
-const textAt = ($it, i) => $it.find('tr').at(1).find('th').at(1 + i).text();
+import {
+  labelAt,
+} from '../../testing/selectors';
 
 import TableHead from '../TableHead';
 
@@ -34,8 +35,8 @@ describe('TableHead', () => {
     expect($it.find('button').length).toBe(1); // add row
     expect($it.find('tr').at(1).find('th').at(0).text()).toBe('4');
     // and so on for field labels in column headings
-    expect(textAt($it, 0)).toBe(fields[0].label);
-    expect(textAt($it, 1)).toBe(fields[1].label);
-    expect(textAt($it, 2)).toBe(fields[2].label);
+    expect(labelAt($it, 0)).toBe(fields[0].label);
+    expect(labelAt($it, 1)).toBe(fields[1].label);
+    expect(labelAt($it, 2)).toBe(fields[2].label);
   });
 });
