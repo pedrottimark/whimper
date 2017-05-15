@@ -2,7 +2,6 @@
 
 import React from 'react';
 import {mount} from 'enzyme';
-import {mountToShallowJson} from '../../testing/enzyme-to-json';
 import {relevantTestObject} from '../../testing/react-test-renderer';
 
 import {createStore} from 'redux';
@@ -11,6 +10,11 @@ import {Provider} from 'react-redux';
 import {receiveData} from '../../actions';
 import reducer from '../../reducers';
 import {fieldsReceived as fields} from '../../reducers/fields';
+import {
+  changeFilter,
+  countRecords,
+  tbodyShallow,
+} from '../../testing/selectors';
 import {
   recordA,
   recordB,
@@ -24,15 +28,7 @@ import {
 import Table from '../Table';
 const TableRow = () => {}; // mock, and provide only relevant props
 
-const tbodyShallow = ($it) => mountToShallowJson($it.find('tbody'));
-
 describe('Table filtering', () => {
-  const changeFilter = ($input, value) => {
-    $input.get(0).value = value;
-    $input.simulate('change');
-  };
-  const countRecords = ($it) => Number($it.find('thead tr').at(1).find('th').at(0).text());
-
   const records = [recordA, recordB, recordC, recordD, recordE, recordF, recordG];
   const store = createStore(reducer);
   store.dispatch(receiveData(fields, records));
@@ -41,15 +37,14 @@ describe('Table filtering', () => {
       <Table />
     </Provider>
   );
-  const $input = $it.find('thead input');
 
   it('matches all rows', () => {
-    changeFilter($input, '1');
+    changeFilter($it, '1');
     expect(countRecords($it)).toEqual(records.length);
   });
 
   it('matches fewer rows', () => {
-    changeFilter($input, '10');
+    changeFilter($it, '10');
     expect(countRecords($it)).toEqual(2);
     expect(tbodyShallow($it)).toMatchObject(relevantTestObject(
       <tbody>
@@ -60,7 +55,7 @@ describe('Table filtering', () => {
   });
 
   it('matches same rows', () => {
-    changeFilter($input, '10 ');
+    changeFilter($it, '10 ');
     expect(countRecords($it)).toEqual(2);
     expect(tbodyShallow($it)).toMatchObject(relevantTestObject(
       <tbody>
@@ -71,7 +66,7 @@ describe('Table filtering', () => {
   });
 
   it('matches even fewer rows', () => {
-    changeFilter($input, '10 y');
+    changeFilter($it, '10 y');
     expect(countRecords($it)).toEqual(1);
     expect(tbodyShallow($it)).toMatchObject(relevantTestObject(
       <tbody>
@@ -81,7 +76,7 @@ describe('Table filtering', () => {
   });
 
   it('matches no rows', () => {
-    changeFilter($input, '10 yr');
+    changeFilter($it, '10 yr');
     expect(countRecords($it)).toEqual(0);
     expect(tbodyShallow($it)).toMatchObject(relevantTestObject(
       <tbody>
@@ -90,7 +85,7 @@ describe('Table filtering', () => {
   });
 
   it('matches all rows again', () => {
-    changeFilter($input, '');
+    changeFilter($it, '');
     expect(countRecords($it)).toEqual(records.length);
   });
 });
