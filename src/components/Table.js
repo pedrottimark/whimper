@@ -46,7 +46,7 @@ import './Table.css';
 import TableHead from './TableHead';
 import TableRow from './TableRow';
 
-class Table extends Component {
+export class Table extends Component {
   props: Props;
   state: State = {
     updating: null
