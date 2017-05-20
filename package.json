@@ -5,14 +5,14 @@
   "devDependencies": {
     "enzyme": "2.8.2",
     "enzyme-to-json": "1.5.1",
-    "react-scripts": "1.0.0",
+    "react-scripts": "1.0.1",
     "react-test-renderer": "15.5.4"
   },
   "dependencies": {
     "invariant": "2.2.2",
     "react": "15.5.4",
     "react-dom": "15.5.4",
-    "react-redux": "5.0.4",
+    "react-redux": "5.0.5",
     "redux": "^3.6.0"
   },
   "scripts": {
