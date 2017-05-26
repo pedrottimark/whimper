@@ -23,6 +23,11 @@ import type {
   Updating,
 } from '../types';
 
+import './Table.css';
+
+import TableHead from './TableHead';
+import TableRow from './TableRow';
+
 type Props = {|
   fields: Fields,
   records: Records,
@@ -34,11 +39,6 @@ type Props = {|
 type State = {
   updating: Updating,
 };
-
-import './Table.css';
-
-import TableHead from './TableHead';
-import TableRow from './TableRow';
 
 export class Table extends Component {
   props: Props;
