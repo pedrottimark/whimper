@@ -31,9 +31,9 @@ Analogies from *Articulating Design Decisions* by Tom Greever:
 
 > The most important thing you could ask…the very first thing you should always ask is, “What are we trying to **communicate**?”
 
-> **Communicating** about the designs was more important than the designs themselves. Our designs do not speak for themselves. s/design/**test**/
-
 > Become a great designer by **describing** your designs to other people in a way that makes sense to them. s/design/**test**/
+
+> Our designs do not speak for themselves. s/design/**snapshot test**/
 
 ### Zero configuration testing with Jest
 
