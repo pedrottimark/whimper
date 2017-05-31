@@ -25,6 +25,16 @@ The **whimper** app is a parody of Twitter that I adapted from Whinepad in *Reac
 * **C**omplete: fewer tests that fit your priorities for quality-scope-cost are better than more tests that don’t
 * **C**onsistent: apply patterns for 20% of operations which occur 80% of the time
 
+### Communicate test criteria like design decisions
+
+Analogies from *Articulating Design Decisions* by Tom Greever:
+
+> The most important thing you could ask…the very first thing you should always ask is, “What are we trying to **communicate**?”
+
+> **Communicating** about the designs was more important than the designs themselves. Our designs do not speak for themselves. s/design/**test**/
+
+> Become a great designer by **describing** your designs to other people in a way that makes sense to them. s/design/**test**/
+
 ### Zero configuration testing with Jest
 
 [Jest](http://facebook.github.io/jest/) is already configured if you create a project with:
@@ -36,7 +46,7 @@ The **whimper** app is a parody of Twitter that I adapted from Whinepad in *Reac
 
 ### Only a few other devDependencies
 
-* react-addons-test-utils is peer dependency for enzyme
+* react-dom/test-utils is peer dependency for enzyme
 * [enzyme](http://airbnb.io/enzyme/) returns a wrapper, as in jQuery
   * [mount](http://airbnb.io/enzyme/docs/api/mount.html) renders component to **maximum** depth in simulated DOM. It contains only DOM nodes, no React components.
   * [shallow](http://airbnb.io/enzyme/docs/api/shallow.html) renders component to **minimum** depth, to test it independent of how children are implemented. It might contain DOM nodes, but any children which are React components are leaves of the tree.
@@ -173,8 +183,8 @@ The rest of examples replace `toMatchSnapshot` with `toMatchObject` to match a *
 
 #### Proposed to import from `enzyme-to-json`
 
-* `mountToDeepJson` Given an enzyme `mount` wrapper, especially from selector traversal, return a test object rendered to **maximum** depth. It contains only DOM nodes, no React components.
-* `mountToShallowJson` Given an enzyme `mount` wrapper, especially from selector traversal, return a test object rendered to **minimum** depth. It might contain DOM nodes, but any children which are React components are leaves of the tree.
+* `mountToDeepJson` Given an enzyme `mount` wrapper, especially from selector traversal, return a test object rendered to **maximum** depth. It has only DOM nodes, no React components. Realistic interaction for descendant structure compatible with `react-test-renderer`.
+* `mountToShallowJson` Given an enzyme `mount` wrapper, especially from selector traversal, return a test object rendered to **minimum** depth. It might contain DOM nodes, but any children which are React components are leaves of the tree. New deep-event/shallow-test pattern balances realistic interaction with limited structure.
 
 #### Proposed to import from `react-test-renderer`
 
