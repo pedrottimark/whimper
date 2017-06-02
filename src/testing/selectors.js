@@ -8,7 +8,7 @@ import {mountToShallowJson} from './enzyme-to-json';
 // get values
 
 export const countRecords = ($table) =>
-  Number($table.find('thead tr').at(1).find('th').at(0).text());
+  $table.find('TableHead').prop('count');
 
 export const tbodyShallow = ($table) =>
   mountToShallowJson($table.find('tbody'));
