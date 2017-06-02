@@ -409,21 +409,15 @@ Example: **add row** to table body
 ```js
 import React from 'react';
 import {mount} from 'enzyme';
-import {mountToShallowJson} from 'enzyme-to-json';      // proposed
 import {relevantTestObject} from 'react-test-renderer'; // proposed
+import {
+  clickAdd,
+  countRecords,
+  tbodyShallow,
+} from '../../testing/selectors';
 
 import Table from '../Table';
 const TableRow = () => {}; // mock, and provide only relevant props
-
-const clickAdd = ($it) => {
-  $it.find('thead tr').at(0).find('th').at(0).simulate('click');
-};
-
-const countRows = ($it) =>
-  Number($it.find('thead tr').at(1).find('th').at(0).text());
-
-const tbodyShallow = ($it) =>
-  mountToShallowJson($it.find('tbody'));
 
 describe('Table', () =>
   it('creates a row preceding one existing row', () => {
@@ -448,6 +442,27 @@ describe('Table', () =>
 
   // and so on
 });
+```
+
+The `src/testing/selectors.js` file encapsulates traversal in non-snapshot tests to minimize change if there is a change to structure of markup that a component renders.
+
+The goal is similar to **selectors** for state of a Redux store.
+
+```js
+import {mountToShallowJson} from 'enzyme-to-json';      // proposed
+
+const clickAdd = ($it) => {
+  $it.find('thead tr').at(0).find('th').at(0).simulate('click');
+};
+
+const countRows = ($it) =>
+  $table.find('TableHead').prop('count');
+  // Thanks to Patrick A. for suggesting the preceding shallow traversal,
+  // to replace the following deep traversal which I had written:
+  // Number($table.find('thead tr').at(1).find('th').at(0).text());
+
+const tbodyShallow = ($it) =>
+  mountToShallowJson($it.find('tbody'));
 ```
 
 `countRows` is in a typical expected value assertion. I use them when they fit my goal :)
