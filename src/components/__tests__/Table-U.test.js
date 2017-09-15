@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {mount} from 'enzyme';
-import {mountToDeepJson} from '../../testing/enzyme-to-json';
+import {mountToDeepJson} from 'enzyme-to-json';
 import {relevantTestObject} from '../../testing/react-test-renderer';
 import invariant from 'invariant';
 

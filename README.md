@@ -181,7 +181,7 @@ The rest of examples replace `toMatchSnapshot` with `toMatchObject` to match a *
 | Copy from temporary snapshot, and delete… | non-TDD |
 | *Maybe someday*, paste by editor integration, and delete… | non-TDD |
 
-#### Proposed to import from `enzyme-to-json`
+#### Import from `enzyme-to-json` 1.6.0 or later
 
 * `mountToDeepJson` Given an enzyme `mount` wrapper, especially from selector traversal, return a test object rendered to **maximum** depth. It has only DOM nodes, no React components. Realistic interaction for descendant structure compatible with `react-test-renderer`.
 * `mountToShallowJson` Given an enzyme `mount` wrapper, especially from selector traversal, return a test object rendered to **minimum** depth. It might contain DOM nodes, but any children which are React components are leaves of the tree. New deep-event/shallow-test pattern balances realistic interaction with limited structure.
@@ -449,7 +449,7 @@ The `src/testing/selectors.js` file encapsulates traversal in non-snapshot tests
 The goal is similar to **selectors** for state of a Redux store.
 
 ```js
-import {mountToShallowJson} from 'enzyme-to-json';      // proposed
+import {mountToShallowJson} from 'enzyme-to-json';
 
 const clickAdd = ($it) => {
   $it.find('thead tr').at(0).find('th').at(0).simulate('click');
@@ -562,7 +562,7 @@ Example: **input or edit text** in table cell
 ```js
 import React from 'react';
 import {mount} from 'enzyme';
-import {mountToDeepJson} from 'enzyme-to-json';         // proposed
+import {mountToDeepJson} from 'enzyme-to-json';
 import {relevantTestObject} from 'react-test-renderer'; // proposed
 
 import Table from '../Table';
