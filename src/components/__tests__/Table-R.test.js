@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {mount} from 'enzyme';
-import {mountToShallowJson} from '../../testing/enzyme-to-json';
+import {mountToShallowJson} from 'enzyme-to-json';
 import {relevantTestObject} from '../../testing/react-test-renderer';
 
 import {createStore} from 'redux';
