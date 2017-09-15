@@ -1,4 +1,4 @@
-import {mountToShallowJson} from './enzyme-to-json';
+import {mountToShallowJson} from 'enzyme-to-json';
 
 // Selectors encapsulate traversal in non-snapshot tests to minimize change
 // if there is a change to structure of markup that a component renders.
