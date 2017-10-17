@@ -1,4 +1,6 @@
-import {mountToShallowJson} from 'enzyme-to-json';
+import toJson from 'enzyme-to-json';
+
+const mountToShallowJson = wrapper => toJson(wrapper, {mode: 'shallow'});
 
 // Selectors encapsulate traversal in non-snapshot tests to minimize change
 // if there is a change to structure of markup that a component renders.
@@ -20,7 +22,7 @@ export const trShallow = ($tbodyOrHead) =>
 
 export const changeFilter = ($table, value) => {
   const $input = $table.find('thead input');
-  $input.get(0).value = value;
+  $input.at(0).getDOMNode().value = value;
   $input.simulate('change');
 };
 
