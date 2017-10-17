@@ -2,7 +2,9 @@ import React from 'react';
 import {createStore} from 'redux';
 import {connect, Provider} from 'react-redux';
 
-import {mount} from 'enzyme';
+import Enzyme, {mount} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({adapter: new Adapter()});
 
 import {fieldsReceived as fields} from '../../reducers/fields';
 import view from '../../reducers/view';
