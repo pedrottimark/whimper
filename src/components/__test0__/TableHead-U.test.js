@@ -17,6 +17,7 @@ import {
 import TableHead, {
   ascending,
   descending,
+  neutral,
 } from '../TableHead';
 
 describe('TableHead sorting indicator', () => {
@@ -40,58 +41,58 @@ describe('TableHead sorting indicator', () => {
     </Provider>
   );
 
-  it('is empty by default', () => {
-    expect(abbrAt($it, 0)).toBe('');
-    expect(abbrAt($it, 1)).toBe('');
-    expect(abbrAt($it, 2)).toBe('');
+  it('is neutral by default', () => {
+    expect(abbrAt($it, 0)).toBe(neutral);
+    expect(abbrAt($it, 1)).toBe(neutral);
+    expect(abbrAt($it, 2)).toBe(neutral);
   });
 
   it('is ascending on click `what` heading', () => {
     clickHeading($it, 1);
-    expect(abbrAt($it, 0)).toBe('');
+    expect(abbrAt($it, 0)).toBe(neutral);
     expect(abbrAt($it, 1)).toBe(ascending);
-    expect(abbrAt($it, 2)).toBe('');
+    expect(abbrAt($it, 2)).toBe(neutral);
   });
 
   it('is descending on click `what` heading again', () => {
     clickHeading($it, 1);
-    expect(abbrAt($it, 0)).toBe('');
+    expect(abbrAt($it, 0)).toBe(neutral);
     expect(abbrAt($it, 1)).toBe(descending);
-    expect(abbrAt($it, 2)).toBe('');
+    expect(abbrAt($it, 2)).toBe(neutral);
   });
 
   it('is ascending on click `weep` heading', () => {
     clickHeading($it, 2);
-    expect(abbrAt($it, 0)).toBe('');
-    expect(abbrAt($it, 1)).toBe('');
+    expect(abbrAt($it, 0)).toBe(neutral);
+    expect(abbrAt($it, 1)).toBe(neutral);
     expect(abbrAt($it, 2)).toBe(ascending);
   });
 
   it('is ascending on click `when` heading', () => {
     clickHeading($it, 0);
     expect(abbrAt($it, 0)).toBe(ascending);
-    expect(abbrAt($it, 1)).toBe('');
-    expect(abbrAt($it, 2)).toBe('');
+    expect(abbrAt($it, 1)).toBe(neutral);
+    expect(abbrAt($it, 2)).toBe(neutral);
   });
 
   it('is ascending on click `weep` again after others', () => {
     clickHeading($it, 2);
-    expect(abbrAt($it, 0)).toBe('');
-    expect(abbrAt($it, 1)).toBe('');
+    expect(abbrAt($it, 0)).toBe(neutral);
+    expect(abbrAt($it, 1)).toBe(neutral);
     expect(abbrAt($it, 2)).toBe(ascending);
   });
 
   it('is descending on click `weep` again', () => {
     clickHeading($it, 2);
-    expect(abbrAt($it, 0)).toBe('');
-    expect(abbrAt($it, 1)).toBe('');
+    expect(abbrAt($it, 0)).toBe(neutral);
+    expect(abbrAt($it, 1)).toBe(neutral);
     expect(abbrAt($it, 2)).toBe(descending);
   });
 
   it('resets on click non-field heading at left', () => {
     clickHeading($it, -1);
-    expect(abbrAt($it, 0)).toBe('');
-    expect(abbrAt($it, 1)).toBe('');
-    expect(abbrAt($it, 2)).toBe('');
+    expect(abbrAt($it, 0)).toBe(neutral);
+    expect(abbrAt($it, 1)).toBe(neutral);
+    expect(abbrAt($it, 2)).toBe(neutral);
   });
 });

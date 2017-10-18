@@ -2,7 +2,9 @@ import React from 'react';
 import {createStore} from 'redux';
 import {connect, Provider} from 'react-redux';
 
-import {mount} from 'enzyme';
+import Enzyme, {mount} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({adapter: new Adapter()});
 import {irrelevant, relevantTestObject} from '../../testing/react-test-renderer';
 
 import {fieldsReceived as fields} from '../../reducers/fields';
@@ -16,6 +18,7 @@ import {
 import TableHead, {
   ascending,
   descending,
+  neutral,
 } from '../TableHead';
 
 describe('TableHead sorting indicator', () => {
@@ -40,13 +43,13 @@ describe('TableHead sorting indicator', () => {
   );
   const trInitial = trShallow($it);
 
-  it('is empty by default', () => {
+  it('is neutral by default', () => {
     expect(trShallow($it)).toMatchObject(relevantTestObject(
       <tr>
         <th>{irrelevant}</th>
-        <th><span>{irrelevant}</span><abbr>{''}</abbr></th>
-        <th><span>{irrelevant}</span><abbr>{''}</abbr></th>
-        <th><span>{irrelevant}</span><abbr>{''}</abbr></th>
+        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
+        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
+        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
       </tr>
     ));
   });
@@ -56,9 +59,9 @@ describe('TableHead sorting indicator', () => {
     expect(trShallow($it)).toMatchObject(relevantTestObject(
       <tr>
         <th>{irrelevant}</th>
-        <th><span>{irrelevant}</span><abbr>{''}</abbr></th>
+        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
         <th><span>{irrelevant}</span><abbr>{ascending}</abbr></th>
-        <th><span>{irrelevant}</span><abbr>{''}</abbr></th>
+        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
       </tr>
     ));
   });
@@ -68,9 +71,9 @@ describe('TableHead sorting indicator', () => {
     expect(trShallow($it)).toMatchObject(relevantTestObject(
       <tr>
         <th>{irrelevant}</th>
-        <th><span>{irrelevant}</span><abbr>{''}</abbr></th>
+        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
         <th><span>{irrelevant}</span><abbr>{descending}</abbr></th>
-        <th><span>{irrelevant}</span><abbr>{''}</abbr></th>
+        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
       </tr>
     ));
   });
@@ -80,8 +83,8 @@ describe('TableHead sorting indicator', () => {
     expect(trShallow($it)).toMatchObject(relevantTestObject(
       <tr>
         <th>{irrelevant}</th>
-        <th><span>{irrelevant}</span><abbr>{''}</abbr></th>
-        <th><span>{irrelevant}</span><abbr>{''}</abbr></th>
+        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
+        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
         <th><span>{irrelevant}</span><abbr>{ascending}</abbr></th>
       </tr>
     ));
@@ -93,8 +96,8 @@ describe('TableHead sorting indicator', () => {
       <tr>
         <th>{irrelevant}</th>
         <th><span>{irrelevant}</span><abbr>{ascending}</abbr></th>
-        <th><span>{irrelevant}</span><abbr>{''}</abbr></th>
-        <th><span>{irrelevant}</span><abbr>{''}</abbr></th>
+        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
+        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
       </tr>
     ));
   });
@@ -104,8 +107,8 @@ describe('TableHead sorting indicator', () => {
     expect(trShallow($it)).toMatchObject(relevantTestObject(
       <tr>
         <th>{irrelevant}</th>
-        <th><span>{irrelevant}</span><abbr>{''}</abbr></th>
-        <th><span>{irrelevant}</span><abbr>{''}</abbr></th>
+        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
+        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
         <th><span>{irrelevant}</span><abbr>{ascending}</abbr></th>
       </tr>
     ));
@@ -116,8 +119,8 @@ describe('TableHead sorting indicator', () => {
     expect(trShallow($it)).toMatchObject(relevantTestObject(
       <tr>
         <th>{irrelevant}</th>
-        <th><span>{irrelevant}</span><abbr>{''}</abbr></th>
-        <th><span>{irrelevant}</span><abbr>{''}</abbr></th>
+        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
+        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
         <th><span>{irrelevant}</span><abbr>{descending}</abbr></th>
       </tr>
     ));
@@ -128,9 +131,9 @@ describe('TableHead sorting indicator', () => {
     expect(trShallow($it)).toMatchObject(relevantTestObject(
       <tr>
         <th>{irrelevant}</th>
-        <th><span>{irrelevant}</span><abbr>{''}</abbr></th>
-        <th><span>{irrelevant}</span><abbr>{''}</abbr></th>
-        <th><span>{irrelevant}</span><abbr>{''}</abbr></th>
+        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
+        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
+        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
       </tr>
     ));
   });
