@@ -61,7 +61,6 @@ export class Table extends Component {
     // Get attributes because no dataset property in jsdom 10 and earlier
     const unparsedId = target.getAttribute('data-record-id');
     const fieldKey = target.getAttribute('data-field-key');
-    console.log(target.nodeName, unparsedId, fieldKey);
     if (unparsedId !== null && fieldKey !== null) {
       // Double-click a data cell to display an input box.
       const recordId = parseInt(unparsedId, 10);
