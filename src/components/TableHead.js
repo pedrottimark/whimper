@@ -23,11 +23,7 @@ export const descending = '\u25BC'; // black down-pointing triangle
 
 function sortingIndicator(fieldKey: FieldKey, sortingCriterion?: SortingCriterion) {
   let title = '';
-<<<<<<< HEAD
-  let text = 'neutral';
-=======
   let text;
->>>>>>> d5e7552... Replace empty string with undefined in TableHead
   if (sortingCriterion && sortingCriterion.fieldKey === fieldKey) {
     if (sortingCriterion.descending) {
       title = 'descending';
