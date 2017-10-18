@@ -1,7 +1,9 @@
 /* @flow */
 
 import React from 'react';
-import {mount} from 'enzyme';
+import Enzyme, {mount} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({adapter: new Adapter()});
 import invariant from 'invariant';
 
 import {createStore} from 'redux';
@@ -38,33 +40,26 @@ describe('Table', () => {
     const fieldIndex = 0;
     const field = fields[fieldIndex];
     invariant(field.type === 'number', 'testing a number field');
-    const $td = $tdAtIndex($it, rowIndex, fieldIndex);
+    const numberInitial = records[rowIndex][field.key];
+    const $tdInitial = $tdAtIndex($it, rowIndex, fieldIndex);
+    $tdInitial.simulate('doubleClick');
 
-    const td = $td.get(0);
-    if (!td.dataset) {
-      // Make up for limitation of jsdom
-      td.dataset = {
-        recordId: td.getAttribute('data-record-id'),
-        fieldKey: td.getAttribute('data-field-key'),
-      };
-    }
-    $td.simulate('doubleClick');
-
-    const numberInitial = records[rowIndex][fields[fieldIndex].key];
-    expect($td.find('span').at(0).text()).toBe(String(numberInitial));
-    expect($td.find('input').at(0).props()).toMatchObject({
+    const $tdUpdating = $tdAtIndex($it, rowIndex, fieldIndex);
+    expect($tdUpdating.find('span').at(0).text()).toBe(String(numberInitial));
+    expect($tdUpdating.find('input').at(0).props()).toMatchObject({
       defaultValue: numberInitial,
       type: 'number',
     });
 
-    const input = $td.find('input').get(0);
+    const input = $tdUpdating.find('input').getDOMNode();
     invariant(parseInt(input.value, 10) === numberInitial, 'cell consistent with record');
 
     const numberUpdated = numberInitial + 1;
     input.value = String(numberUpdated);
+    $tdUpdating.find('form').simulate('submit');
 
-    $td.find('form').simulate('submit');
-    expect($td.text()).toBe(String(numberUpdated));
+    const $tdUpdated = $tdAtIndex($it, rowIndex, fieldIndex);
+    expect($tdUpdated.text()).toBe(String(numberUpdated));
   });
 
   it('updates a text field', () => {
@@ -80,30 +75,23 @@ describe('Table', () => {
     const fieldIndex = 1;
     const field = fields[fieldIndex];
     invariant(field.type === 'text', 'testing a text field');
-    const $td = $tdAtIndex($it, rowIndex, fieldIndex);
+    const textInitial = records[rowIndex][field.key];
+    const $tdInitial = $tdAtIndex($it, rowIndex, fieldIndex);
+    $tdInitial.simulate('doubleClick');
 
-    const td = $td.get(0);
-    if (!td.dataset) {
-      // Make up for limitation of jsdom
-      td.dataset = {
-        recordId: td.getAttribute('data-record-id'),
-        fieldKey: td.getAttribute('data-field-key'),
-      };
-    }
-    $td.simulate('doubleClick');
-
-    const textInitial = records[rowIndex][fields[fieldIndex].key];
-    expect($td.find('span').at(0).text()).toBe(textInitial);
-    expect($td.find('input').at(0).props()).toMatchObject({
+    const $tdUpdating = $tdAtIndex($it, rowIndex, fieldIndex);
+    expect($tdUpdating.find('span').at(0).text()).toBe(textInitial);
+    expect($tdUpdating.find('input').at(0).props()).toMatchObject({
       defaultValue: textInitial,
       type: 'text',
     });
 
     const textUpdated = 'ECMAScript 2015';
-    $td.find('input').get(0).value = textUpdated;
+    $tdUpdating.find('input').getDOMNode().value = textUpdated;
+    $tdUpdating.find('form').simulate('submit');
 
-    $td.find('form').simulate('submit');
-    expect($td.text()).toBe(textUpdated);
+    const $tdUpdated = $tdAtIndex($it, rowIndex, fieldIndex);
+    expect($tdUpdated.text()).toBe(textUpdated);
   });
 
   it('cancels updating if people double-click the input', () => {
@@ -117,19 +105,14 @@ describe('Table', () => {
 
     const rowIndex = 2;
     const fieldIndex = 1;
-    const $td = $tdAtIndex($it, rowIndex, fieldIndex);
-    const prev = $td.text();
-    const td = $td.get(0);
-    if (!td.dataset) {
-      // Make up for limitation of jsdom
-      td.dataset = {
-        recordId: td.getAttribute('data-record-id'),
-        fieldKey: td.getAttribute('data-field-key'),
-      };
-    }
-    $td.simulate('doubleClick');
+    const $tdInitial = $tdAtIndex($it, rowIndex, fieldIndex);
+    const textInitial = $tdInitial.text();
+    $tdInitial.simulate('doubleClick');
 
-    $td.find('input').simulate('doubleClick');
-    expect($td.text()).toBe(prev);
+    const $tdUpdating = $tdAtIndex($it, rowIndex, fieldIndex);
+    $tdUpdating.find('input').simulate('doubleClick');
+
+    const $tdCanceled = $tdAtIndex($it, rowIndex, fieldIndex);
+    expect($tdCanceled.text()).toBe(textInitial);
   });
 });
