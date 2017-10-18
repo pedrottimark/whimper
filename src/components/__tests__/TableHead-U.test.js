@@ -18,7 +18,6 @@ import {
 import TableHead, {
   ascending,
   descending,
-  neutral,
 } from '../TableHead';
 
 describe('TableHead sorting indicator', () => {
@@ -46,9 +45,9 @@ describe('TableHead sorting indicator', () => {
     expect(trShallow($it)).toMatchObject(relevantTestObject(
       <tr>
         <th>{irrelevant}</th>
-        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
-        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
-        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
+        <th><span>{irrelevant}</span><abbr></abbr></th>
+        <th><span>{irrelevant}</span><abbr></abbr></th>
+        <th><span>{irrelevant}</span><abbr></abbr></th>
       </tr>
     ));
   });
@@ -58,9 +57,9 @@ describe('TableHead sorting indicator', () => {
     expect(trShallow($it)).toMatchObject(relevantTestObject(
       <tr>
         <th>{irrelevant}</th>
-        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
+        <th><span>{irrelevant}</span><abbr></abbr></th>
         <th><span>{irrelevant}</span><abbr>{ascending}</abbr></th>
-        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
+        <th><span>{irrelevant}</span><abbr></abbr></th>
       </tr>
     ));
   });
@@ -70,9 +69,9 @@ describe('TableHead sorting indicator', () => {
     expect(trShallow($it)).toMatchObject(relevantTestObject(
       <tr>
         <th>{irrelevant}</th>
-        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
+        <th><span>{irrelevant}</span><abbr></abbr></th>
         <th><span>{irrelevant}</span><abbr>{descending}</abbr></th>
-        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
+        <th><span>{irrelevant}</span><abbr></abbr></th>
       </tr>
     ));
   });
@@ -82,8 +81,8 @@ describe('TableHead sorting indicator', () => {
     expect(trShallow($it)).toMatchObject(relevantTestObject(
       <tr>
         <th>{irrelevant}</th>
-        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
-        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
+        <th><span>{irrelevant}</span><abbr></abbr></th>
+        <th><span>{irrelevant}</span><abbr></abbr></th>
         <th><span>{irrelevant}</span><abbr>{ascending}</abbr></th>
       </tr>
     ));
@@ -95,8 +94,8 @@ describe('TableHead sorting indicator', () => {
       <tr>
         <th>{irrelevant}</th>
         <th><span>{irrelevant}</span><abbr>{ascending}</abbr></th>
-        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
-        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
+        <th><span>{irrelevant}</span><abbr></abbr></th>
+        <th><span>{irrelevant}</span><abbr></abbr></th>
       </tr>
     ));
   });
@@ -106,8 +105,8 @@ describe('TableHead sorting indicator', () => {
     expect(trShallow($it)).toMatchObject(relevantTestObject(
       <tr>
         <th>{irrelevant}</th>
-        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
-        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
+        <th><span>{irrelevant}</span><abbr></abbr></th>
+        <th><span>{irrelevant}</span><abbr></abbr></th>
         <th><span>{irrelevant}</span><abbr>{ascending}</abbr></th>
       </tr>
     ));
@@ -118,8 +117,8 @@ describe('TableHead sorting indicator', () => {
     expect(trShallow($it)).toMatchObject(relevantTestObject(
       <tr>
         <th>{irrelevant}</th>
-        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
-        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
+        <th><span>{irrelevant}</span><abbr></abbr></th>
+        <th><span>{irrelevant}</span><abbr></abbr></th>
         <th><span>{irrelevant}</span><abbr>{descending}</abbr></th>
       </tr>
     ));
@@ -130,9 +129,9 @@ describe('TableHead sorting indicator', () => {
     expect(trShallow($it)).toMatchObject(relevantTestObject(
       <tr>
         <th>{irrelevant}</th>
-        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
-        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
-        <th><span>{irrelevant}</span><abbr>{neutral}</abbr></th>
+        <th><span>{irrelevant}</span><abbr></abbr></th>
+        <th><span>{irrelevant}</span><abbr></abbr></th>
+        <th><span>{irrelevant}</span><abbr></abbr></th>
       </tr>
     ));
   });
