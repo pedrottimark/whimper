@@ -20,11 +20,14 @@ type Props = {|
 
 export const ascending = '\u25B2'; // black up-pointing triangle
 export const descending = '\u25BC'; // black down-pointing triangle
-export const neutral = '\u00A0'; // no-break space
 
 function sortingIndicator(fieldKey: FieldKey, sortingCriterion?: SortingCriterion) {
   let title = '';
+<<<<<<< HEAD
   let text = 'neutral';
+=======
+  let text;
+>>>>>>> d5e7552... Replace empty string with undefined in TableHead
   if (sortingCriterion && sortingCriterion.fieldKey === fieldKey) {
     if (sortingCriterion.descending) {
       title = 'descending';
