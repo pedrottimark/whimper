@@ -17,8 +17,9 @@ import {
 import TableHead, {
   ascending,
   descending,
-  neutral,
 } from '../TableHead';
+
+const neutral = '';
 
 describe('TableHead sorting indicator', () => {
   const Connected = connect(
