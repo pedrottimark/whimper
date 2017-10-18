@@ -34,9 +34,7 @@ exports[`TableHead renders button, count, and fields 1`] = `
       </span>
       <abbr
         title=""
-      >
-        
-      </abbr>
+      />
     </th>
     <th
       onClick={[Function]}
@@ -47,9 +45,7 @@ exports[`TableHead renders button, count, and fields 1`] = `
       </span>
       <abbr
         title=""
-      >
-        
-      </abbr>
+      />
     </th>
     <th
       onClick={[Function]}
@@ -60,9 +56,7 @@ exports[`TableHead renders button, count, and fields 1`] = `
       </span>
       <abbr
         title=""
-      >
-        
-      </abbr>
+      />
     </th>
   </tr>
 </thead>
