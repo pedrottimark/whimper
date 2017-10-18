@@ -18,12 +18,13 @@ type Props = {|
   view: View,
 |};
 
-export const ascending = '\u2193'; // DOWNWARDS ARROW
-export const descending = '\u2191'; // UPWARDS ARROW
+export const ascending = '\u25B2'; // black up-pointing triangle
+export const descending = '\u25BC'; // black down-pointing triangle
+export const neutral = '\u00A0'; // no-break space
 
 function sortingIndicator(fieldKey: FieldKey, sortingCriterion?: SortingCriterion) {
   let title = '';
-  let text = '';
+  let text = 'neutral';
   if (sortingCriterion && sortingCriterion.fieldKey === fieldKey) {
     if (sortingCriterion.descending) {
       title = 'descending';
