@@ -1,8 +1,11 @@
 /* @flow */
 
 import React from 'react';
-import {mount} from 'enzyme';
-import {mountToDeepJson} from 'enzyme-to-json';
+import Enzyme, {mount} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({adapter: new Adapter()});
+import toJson from 'enzyme-to-json';
+const toDeepJson = wrapper => toJson(wrapper, {mode: 'deep'});
 import {relevantTestObject} from '../../testing/react-test-renderer';
 import invariant from 'invariant';
 
@@ -40,20 +43,12 @@ describe('Table', () => {
     const fieldIndex = 0;
     const field = fields[fieldIndex];
     invariant(field.type === 'number', 'testing a number field');
-    const $td = $tdAtIndex($it, rowIndex, fieldIndex);
+    const numberInitial = records[rowIndex][field.key];
+    const $tdInitial = $tdAtIndex($it, rowIndex, fieldIndex);
+    $tdInitial.simulate('doubleClick');
 
-    const td = $td.get(0);
-    if (!td.dataset) {
-      // Make up for limitation of jsdom
-      td.dataset = {
-        recordId: td.getAttribute('data-record-id'),
-        fieldKey: td.getAttribute('data-field-key'),
-      };
-    }
-    $td.simulate('doubleClick');
-
-    const numberInitial = records[rowIndex][fields[fieldIndex].key];
-    expect(mountToDeepJson($td)).toMatchObject(relevantTestObject(
+    const $tdUpdating = $tdAtIndex($it, rowIndex, fieldIndex);
+    expect(toDeepJson($tdUpdating)).toMatchObject(relevantTestObject(
       <td>
         <div>
           <span>{numberInitial}</span>
@@ -67,14 +62,15 @@ describe('Table', () => {
       </td>
     ));
 
-    const input = $td.find('input').get(0);
+    const input = $tdUpdating.find('input').getDOMNode();
     invariant(parseInt(input.value, 10) === numberInitial, 'cell consistent with record');
 
     const numberUpdated = numberInitial + 1;
     input.value = numberUpdated.toString();
+    $tdUpdating.find('form').simulate('submit');
 
-    $td.find('form').simulate('submit');
-    expect(mountToDeepJson($td)).toMatchObject(relevantTestObject(
+    const $tdUpdated = $tdAtIndex($it, rowIndex, fieldIndex);
+    expect(toDeepJson($tdUpdated)).toMatchObject(relevantTestObject(
       <td>{numberUpdated}</td>
     ));
   });
@@ -92,20 +88,12 @@ describe('Table', () => {
     const fieldIndex = 1;
     const field = fields[fieldIndex];
     invariant(field.type === 'text', 'testing a text field');
-    const $td = $tdAtIndex($it, rowIndex, fieldIndex);
+    const textInitial = records[rowIndex][field.key];
+    const $tdInitial = $tdAtIndex($it, rowIndex, fieldIndex);
+    $tdInitial.simulate('doubleClick');
 
-    const td = $td.get(0);
-    if (!td.dataset) {
-      // Make up for limitation of jsdom
-      td.dataset = {
-        recordId: td.getAttribute('data-record-id'),
-        fieldKey: td.getAttribute('data-field-key'),
-      };
-    }
-    $td.simulate('doubleClick');
-
-    const textInitial = records[rowIndex][fields[fieldIndex].key];
-    expect(mountToDeepJson($td)).toMatchObject(relevantTestObject(
+    const $tdUpdating = $tdAtIndex($it, rowIndex, fieldIndex);
+    expect(toDeepJson($tdUpdating)).toMatchObject(relevantTestObject(
       <td>
         <div>
           <span>{textInitial}</span>
@@ -119,12 +107,12 @@ describe('Table', () => {
       </td>
     ));
 
-    const input = $td.find('input').get(0);
     const textUpdated = 'ECMAScript 2015';
-    input.value = textUpdated;
+    $tdUpdating.find('input').getDOMNode().value = textUpdated;
+    $tdUpdating.find('form').simulate('submit');
 
-    $td.find('form').simulate('submit');
-    expect(mountToDeepJson($td)).toMatchObject(relevantTestObject(
+    const $tdUpdated = $tdAtIndex($it, rowIndex, fieldIndex);
+    expect(toDeepJson($tdUpdated)).toMatchObject(relevantTestObject(
       <td>{textUpdated}</td>
     ));
   });
@@ -140,20 +128,15 @@ describe('Table', () => {
 
     const rowIndex = 2;
     const fieldIndex = 1;
-    const $td = $tdAtIndex($it, rowIndex, fieldIndex);
-    const td = $td.get(0);
-    if (!td.dataset) {
-      // Make up for limitation of jsdom
-      td.dataset = {
-        recordId: td.getAttribute('data-record-id'),
-        fieldKey: td.getAttribute('data-field-key'),
-      };
-    }
-    const prev = mountToDeepJson($td);
-    $td.simulate('doubleClick');
+    const $tdInitial = $tdAtIndex($it, rowIndex, fieldIndex);
+    const objectInitial = toDeepJson($tdInitial);
+    $tdInitial.simulate('doubleClick');
 
-    $td.find('input').simulate('doubleClick');
-    const next = mountToDeepJson($td);
-    expect(next).toEqual(prev);
+    const $tdUpdating = $tdAtIndex($it, rowIndex, fieldIndex);
+    $tdUpdating.find('input').simulate('doubleClick');
+
+    const $tdCanceled = $tdAtIndex($it, rowIndex, fieldIndex);
+    const objectCanceled = toDeepJson($tdCanceled);
+    expect(objectCanceled).toEqual(objectInitial);
   });
 });
