@@ -1,8 +1,10 @@
 /* @flow */
 
 import React from 'react';
-import {mount} from 'enzyme';
-import {mountToShallowJson} from 'enzyme-to-json';
+import Enzyme, {mount} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({adapter: new Adapter()});
+import toJson from 'enzyme-to-json';
 import {relevantTestObject} from '../../testing/react-test-renderer';
 
 import {createStore} from 'redux';
@@ -23,7 +25,7 @@ import {
 
 import Table from '../Table';
 
-const tableShallow = (element) => mountToShallowJson(mount(element).find('table'));
+const tableShallow = (element) => toJson(mount(element).find('table'), {mode: 'shallow'});
 const TableHead = () => {};
 const TableRow = () => {};
 
