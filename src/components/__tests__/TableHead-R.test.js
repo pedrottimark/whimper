@@ -69,7 +69,7 @@ describe('TableHead', () => {
         <th>{irrelevant}</th>
         <th>
           <span>{irrelevant}</span>
-          <abbr title="">{''}</abbr>
+          <abbr title=""></abbr>
         </th>
         <th>
           <span>{irrelevant}</span>
@@ -77,7 +77,7 @@ describe('TableHead', () => {
         </th>
         <th>
           <span>{irrelevant}</span>
-          <abbr title="">{''}</abbr>
+          <abbr title=""></abbr>
         </th>
       </tr>
     ));
@@ -112,11 +112,11 @@ describe('TableHead', () => {
         </th>
         <th>
           <span>{irrelevant}</span>
-          <abbr title="">{''}</abbr>
+          <abbr title=""></abbr>
         </th>
         <th>
           <span>{irrelevant}</span>
-          <abbr title="">{''}</abbr>
+          <abbr title=""></abbr>
         </th>
       </tr>
     ));
